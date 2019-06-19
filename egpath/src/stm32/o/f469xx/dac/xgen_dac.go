@@ -7,7 +7,7 @@ import (
 	"mmio"
 	"unsafe"
 
-	"/Users/ian/code/src/github.com/ianmcmahon/emgo/egpath/src/stm32/o/f469xx/mmap"
+	"stm32/o/f469xx/mmap"
 )
 
 type DAC_Periph struct {

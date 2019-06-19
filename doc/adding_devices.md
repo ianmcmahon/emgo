@@ -13,3 +13,7 @@ xgen and stm32xgen are in tools
 what the hell is -f? doesn't seem to work
 pkgpath is egpath/src/stm32/o/f469xx/
 without -f undef.h, it runs, spews a zillion errors, but produces files
+run xgen on all the files to produce xgen_file.go
+
+now somehow those files need to make their way into stm32/hal/raw/<peripheral>/f69xx--*.go
+not sure if there's an automated tool to do this
