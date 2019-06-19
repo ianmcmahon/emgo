@@ -1,3 +1,4 @@
+// +build f469xx
 // Package eth provides interface to Ethernet MAC.
 package eth
 

@@ -1,3 +1,4 @@
+// +build f469xx
 // Peripheral: CAN_FilterRegister_Periph  Controller Area Network FilterRegister.
 // Instances:
 // Registers:

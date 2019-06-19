@@ -1,3 +1,4 @@
+// +build f469xx
 // Package sai provides interface to Serial Audio Interface.
 package sai
 

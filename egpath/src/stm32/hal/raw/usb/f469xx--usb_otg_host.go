@@ -1,3 +1,4 @@
+// +build f469xx
 // Peripheral: USB_OTG_Host_Periph  USB_OTG_Host_Mode_Register_Structures.
 // Instances:
 // Registers:

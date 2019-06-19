@@ -1,3 +1,4 @@
+// +build f469xx
 // Peripheral: USART_Periph  Universal Synchronous Asynchronous Receiver Transmitter.
 // Instances:
 //  USART2  mmap.USART2_BASE

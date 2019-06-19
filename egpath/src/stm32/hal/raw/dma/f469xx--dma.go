@@ -1,3 +1,4 @@
+// +build f469xx
 // Peripheral: DMA_Periph  DMA Controller.
 // Instances:
 //  DMA1  mmap.DMA1_BASE

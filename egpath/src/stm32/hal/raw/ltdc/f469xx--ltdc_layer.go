@@ -1,3 +1,4 @@
+// +build f469xx
 // Peripheral: LTDC_Layer_Periph  LCD-TFT Display layer x Controller.
 // Instances:
 //  LTDC_Layer1  mmap.LTDC_Layer1_BASE

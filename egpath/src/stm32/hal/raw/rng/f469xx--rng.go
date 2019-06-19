@@ -1,3 +1,4 @@
+// +build f469xx
 // Peripheral: RNG_Periph  RNG.
 // Instances:
 //  RNG  mmap.RNG_BASE

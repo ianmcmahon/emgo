@@ -27,4 +27,4 @@ run xgen on all the files to produce xgen_file.go
 now somehow those files need to make their way into stm32/hal/raw/<peripheral>/f69xx--*.go
 Rnot sure if there's an automated tool to do this but this works:
 
-  for i in stm32/o/f469xx/*/*.go; do FNAME=`basename $i`; P=`dirname $i`; DIRNAME=`basename $P`; D=`dirname $P`; DEVICE=`basename $D`; echo "cp $i stm32/hal/raw/$DIRNAME/$DEVICE--$FNAME"; done
+  for i in stm32/o/f469xx/*/*.go; do FNAME=`basename $i`; P=`dirname $i`; DIRNAME=`basename $P`; D=`dirname $P`; DEVICE=`basename $D`; echo "// +build f469xx"|cat - $i > stm32/hal/raw/$DIRNAME/$DEVICE--$FNAME; done

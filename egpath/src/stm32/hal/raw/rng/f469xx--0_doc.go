@@ -1,3 +1,4 @@
+// +build f469xx
 // Package rng provides interface to RNG.
 package rng
 

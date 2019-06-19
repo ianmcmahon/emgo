@@ -1,3 +1,4 @@
+// +build f469xx
 // Package pwr provides interface to Power Control.
 package pwr
 

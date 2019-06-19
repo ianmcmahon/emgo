@@ -1,3 +1,4 @@
+// +build f469xx
 // Peripheral: QUADSPI_Periph  QUAD Serial Peripheral Interface.
 // Instances:
 //  QUADSPI  mmap.QSPI_R_BASE

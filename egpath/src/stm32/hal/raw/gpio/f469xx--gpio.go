@@ -1,3 +1,4 @@
+// +build f469xx
 // Peripheral: GPIO_Periph  General Purpose I/O.
 // Instances:
 //  GPIOA  mmap.GPIOA_BASE

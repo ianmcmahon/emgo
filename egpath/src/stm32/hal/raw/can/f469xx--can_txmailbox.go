@@ -1,3 +1,4 @@
+// +build f469xx
 // Peripheral: CAN_TxMailBox_Periph  Controller Area Network TxMailBox.
 // Instances:
 // Registers:

@@ -1,3 +1,4 @@
+// +build f469xx
 // Package flash provides interface to FLASH Registers.
 package flash
 

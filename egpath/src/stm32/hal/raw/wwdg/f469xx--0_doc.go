@@ -1,3 +1,4 @@
+// +build f469xx
 // Package wwdg provides interface to Window WATCHDOG.
 package wwdg
 

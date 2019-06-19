@@ -1,3 +1,4 @@
+// +build f469xx
 // Package fmc provides interface to .
 package fmc
 

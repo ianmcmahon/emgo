@@ -1,3 +1,4 @@
+// +build f469xx
 // Peripheral: CAN_Periph  Controller Area Network.
 // Instances:
 //  CAN1  mmap.CAN1_BASE

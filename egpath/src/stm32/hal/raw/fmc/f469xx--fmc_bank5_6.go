@@ -1,3 +1,4 @@
+// +build f469xx
 // Peripheral: FMC_Bank5_6_Periph  Flexible Memory Controller Bank5_6.
 // Instances:
 //  FMC_Bank5_6  mmap.FMC_Bank5_6_R_BASE

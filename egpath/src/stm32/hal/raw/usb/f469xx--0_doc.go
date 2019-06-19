@@ -1,3 +1,4 @@
+// +build f469xx
 // Package usb provides interface to .
 package usb
 

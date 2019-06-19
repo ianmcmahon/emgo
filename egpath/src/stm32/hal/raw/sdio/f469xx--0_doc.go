@@ -1,3 +1,4 @@
+// +build f469xx
 // Package sdio provides interface to SD host Interface.
 package sdio
 

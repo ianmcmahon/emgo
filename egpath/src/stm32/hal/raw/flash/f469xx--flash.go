@@ -1,3 +1,4 @@
+// +build f469xx
 // Peripheral: FLASH_Periph  FLASH Registers.
 // Instances:
 //  FLASH  mmap.FLASH_R_BASE

@@ -1,3 +1,4 @@
+// +build f469xx
 // Peripheral: EXTI_Periph  External Interrupt/Event Controller.
 // Instances:
 //  EXTI  mmap.EXTI_BASE

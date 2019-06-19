@@ -1,3 +1,4 @@
+// +build f469xx
 // Package dbgmcu provides interface to Debug MCU.
 package dbgmcu
 

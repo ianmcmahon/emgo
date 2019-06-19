@@ -1,3 +1,4 @@
+// +build f469xx
 // Peripheral: DBGMCU_Periph  Debug MCU.
 // Instances:
 //  DBGMCU  mmap.DBGMCU_BASE

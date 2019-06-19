@@ -1,3 +1,4 @@
+// +build f469xx
 // Peripheral: SAI_Block_Periph  Serial Audio Interface.
 // Instances:
 //  SAI1_Block_A  mmap.SAI1_Block_A_BASE

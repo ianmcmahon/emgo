@@ -1,3 +1,4 @@
+// +build f469xx
 // Peripheral: ADC_Common_Periph  Analog to Digital Converter.
 // Instances:
 //  ADC123_COMMON  mmap.ADC123_COMMON_BASE

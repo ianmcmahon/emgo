@@ -1,3 +1,4 @@
+// +build f469xx
 // Peripheral: CAN_FIFOMailBox_Periph  Controller Area Network FIFOMailBox.
 // Instances:
 // Registers:

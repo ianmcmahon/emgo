@@ -1,3 +1,4 @@
+// +build f469xx
 // Peripheral: LTDC_Periph  LCD-TFT Display Controller.
 // Instances:
 //  LTDC  mmap.LTDC_BASE

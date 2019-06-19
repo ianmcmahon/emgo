@@ -1,3 +1,4 @@
+// +build f469xx
 // Package tim provides interface to TIM.
 package tim
 

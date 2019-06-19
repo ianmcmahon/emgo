@@ -1,3 +1,4 @@
+// +build f469xx
 // Peripheral: CRC_Periph  CRC calculation unit.
 // Instances:
 //  CRC  mmap.CRC_BASE

@@ -1,3 +1,4 @@
+// +build f469xx
 // Package quadspi provides interface to QUAD Serial Peripheral Interface.
 package quadspi
 

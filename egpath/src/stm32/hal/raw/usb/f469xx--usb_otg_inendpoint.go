@@ -1,3 +1,4 @@
+// +build f469xx
 // Peripheral: USB_OTG_INEndpoint_Periph  USB_OTG_IN_Endpoint-Specific_Register.
 // Instances:
 // Registers:

@@ -1,3 +1,4 @@
+// +build f469xx
 // Peripheral: SYSCFG_Periph  System configuration controller.
 // Instances:
 //  SYSCFG  mmap.SYSCFG_BASE

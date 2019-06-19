@@ -1,3 +1,4 @@
+// +build f469xx
 // Package gpio provides interface to General Purpose I/O.
 package gpio
 

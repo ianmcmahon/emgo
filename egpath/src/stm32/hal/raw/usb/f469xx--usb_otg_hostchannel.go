@@ -1,3 +1,4 @@
+// +build f469xx
 // Peripheral: USB_OTG_HostChannel_Periph  USB_OTG_Host_Channel_Specific_Registers.
 // Instances:
 // Registers:

@@ -1,3 +1,4 @@
+// +build f469xx
 // Package mmap provides base memory adresses for all peripherals.
 package mmap
 

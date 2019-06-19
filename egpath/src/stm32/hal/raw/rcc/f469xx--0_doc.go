@@ -1,3 +1,4 @@
+// +build f469xx
 // Package rcc provides interface to Reset and Clock Control.
 package rcc
 
