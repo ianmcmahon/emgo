@@ -1,4 +1,4 @@
-// +build f40_41xxx f411xe f746xx f303xe l476xx
+// +build f40_41xxx f411xe f469xx f746xx f303xe l476xx
 
 package internal
 
