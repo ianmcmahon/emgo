@@ -81,25 +81,11 @@ const (
 const (
 	CKSEL     CFGR = 0x01 << 0  //+ Clock selector.
 	CKPOL     CFGR = 0x03 << 1  //+ CKPOL[1:0] bits (Clock polarity).
-	CKPOL_0   CFGR = 0x01 << 1  //  Bit 0.
-	CKPOL_1   CFGR = 0x02 << 1  //  Bit 1.
 	CKFLT     CFGR = 0x03 << 3  //+ CKFLT[1:0] bits (Configurable digital filter for external clock).
-	CKFLT_0   CFGR = 0x01 << 3  //  Bit 0.
-	CKFLT_1   CFGR = 0x02 << 3  //  Bit 1.
 	TRGFLT    CFGR = 0x03 << 6  //+ TRGFLT[1:0] bits (Configurable digital filter for trigger).
-	TRGFLT_0  CFGR = 0x01 << 6  //  Bit 0.
-	TRGFLT_1  CFGR = 0x02 << 6  //  Bit 1.
 	PRESC     CFGR = 0x07 << 9  //+ PRESC[2:0] bits (Clock prescaler).
-	PRESC_0   CFGR = 0x01 << 9  //  Bit 0.
-	PRESC_1   CFGR = 0x02 << 9  //  Bit 1.
-	PRESC_2   CFGR = 0x04 << 9  //  Bit 2.
 	TRIGSEL   CFGR = 0x07 << 13 //+ TRIGSEL[2:0]] bits (Trigger selector).
-	TRIGSEL_0 CFGR = 0x01 << 13 //  Bit 0.
-	TRIGSEL_1 CFGR = 0x02 << 13 //  Bit 1.
-	TRIGSEL_2 CFGR = 0x04 << 13 //  Bit 2.
 	TRIGEN    CFGR = 0x03 << 17 //+ TRIGEN[1:0] bits (Trigger enable and polarity).
-	TRIGEN_0  CFGR = 0x01 << 17 //  Bit 0.
-	TRIGEN_1  CFGR = 0x02 << 17 //  Bit 1.
 	TIMOUT    CFGR = 0x01 << 19 //+ Timout enable.
 	WAVE      CFGR = 0x01 << 20 //+ Waveform shape.
 	WAVPOL    CFGR = 0x01 << 21 //+ Waveform shape polarity.

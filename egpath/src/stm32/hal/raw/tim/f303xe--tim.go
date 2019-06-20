@@ -105,18 +105,14 @@ const (
 )
 
 const (
-	SMS   SMCR = 0x10007 << 0 //+ SMS[2:0] bits (Slave mode selection).
-	SMS_0 SMCR = 0x01 << 0    //  Bit 0.
-	SMS_1 SMCR = 0x02 << 0    //  Bit 1.
-	SMS_2 SMCR = 0x04 << 0    //  Bit 2.
-	SMS_3 SMCR = 0x10000 << 0 //  Bit 3.
-	OCCS  SMCR = 0x01 << 3    //+ OCREF clear selection.
-	TS    SMCR = 0x07 << 4    //+ TS[2:0] bits (Trigger selection).
-	MSM   SMCR = 0x01 << 7    //+ Master/slave mode.
-	ETF   SMCR = 0x0F << 8    //+ ETF[3:0] bits (External trigger filter).
-	ETPS  SMCR = 0x03 << 12   //+ ETPS[1:0] bits (External trigger prescaler).
-	ECE   SMCR = 0x01 << 14   //+ External clock enable.
-	ETP   SMCR = 0x01 << 15   //+ External trigger polarity.
+	SMS  SMCR = 0x10007 << 0 //+ SMS[2:0] bits (Slave mode selection).
+	OCCS SMCR = 0x01 << 3    //+ OCREF clear selection.
+	TS   SMCR = 0x07 << 4    //+ TS[2:0] bits (Trigger selection).
+	MSM  SMCR = 0x01 << 7    //+ Master/slave mode.
+	ETF  SMCR = 0x0F << 8    //+ ETF[3:0] bits (External trigger filter).
+	ETPS SMCR = 0x03 << 12   //+ ETPS[1:0] bits (External trigger prescaler).
+	ECE  SMCR = 0x01 << 14   //+ External clock enable.
+	ETP  SMCR = 0x01 << 15   //+ External trigger polarity.
 )
 
 const (
@@ -231,19 +227,11 @@ const (
 	OC1FE  CCMR1 = 0x01 << 2    //+ Output Compare 1 Fast enable.
 	OC1PE  CCMR1 = 0x01 << 3    //+ Output Compare 1 Preload enable.
 	OC1M   CCMR1 = 0x1007 << 4  //+ OC1M[2:0] bits (Output Compare 1 Mode).
-	OC1M_0 CCMR1 = 0x01 << 4    //  Bit 0.
-	OC1M_1 CCMR1 = 0x02 << 4    //  Bit 1.
-	OC1M_2 CCMR1 = 0x04 << 4    //  Bit 2.
-	OC1M_3 CCMR1 = 0x1000 << 4  //  Bit 3.
 	OC1CE  CCMR1 = 0x01 << 7    //+ Output Compare 1Clear Enable.
 	CC2S   CCMR1 = 0x03 << 8    //+ CC2S[1:0] bits (Capture/Compare 2 Selection).
 	OC2FE  CCMR1 = 0x01 << 10   //+ Output Compare 2 Fast enable.
 	OC2PE  CCMR1 = 0x01 << 11   //+ Output Compare 2 Preload enable.
 	OC2M   CCMR1 = 0x1007 << 12 //+ OC2M[2:0] bits (Output Compare 2 Mode).
-	OC2M_0 CCMR1 = 0x01 << 12   //  Bit 0.
-	OC2M_1 CCMR1 = 0x02 << 12   //  Bit 1.
-	OC2M_2 CCMR1 = 0x04 << 12   //  Bit 2.
-	OC2M_3 CCMR1 = 0x1000 << 12 //  Bit 3.
 	OC2CE  CCMR1 = 0x01 << 15   //+ Output Compare 2 Clear Enable.
 	IC1PSC CCMR1 = 0x03 << 2    //+ IC1PSC[1:0] bits (Input Capture 1 Prescaler).
 	IC1F   CCMR1 = 0x0F << 4    //+ IC1F[3:0] bits (Input Capture 1 Filter).
@@ -273,19 +261,11 @@ const (
 	OC3FE  CCMR2 = 0x01 << 2    //+ Output Compare 3 Fast enable.
 	OC3PE  CCMR2 = 0x01 << 3    //+ Output Compare 3 Preload enable.
 	OC3M   CCMR2 = 0x1007 << 4  //+ OC3M[2:0] bits (Output Compare 3 Mode).
-	OC3M_0 CCMR2 = 0x01 << 4    //  Bit 0.
-	OC3M_1 CCMR2 = 0x02 << 4    //  Bit 1.
-	OC3M_2 CCMR2 = 0x04 << 4    //  Bit 2.
-	OC3M_3 CCMR2 = 0x1000 << 4  //  Bit 3.
 	OC3CE  CCMR2 = 0x01 << 7    //+ Output Compare 3 Clear Enable.
 	CC4S   CCMR2 = 0x03 << 8    //+ CC4S[1:0] bits (Capture/Compare 4 Selection).
 	OC4FE  CCMR2 = 0x01 << 10   //+ Output Compare 4 Fast enable.
 	OC4PE  CCMR2 = 0x01 << 11   //+ Output Compare 4 Preload enable.
 	OC4M   CCMR2 = 0x1007 << 12 //+ OC4M[2:0] bits (Output Compare 4 Mode).
-	OC4M_0 CCMR2 = 0x01 << 12   //  Bit 0.
-	OC4M_1 CCMR2 = 0x02 << 12   //  Bit 1.
-	OC4M_2 CCMR2 = 0x04 << 12   //  Bit 2.
-	OC4M_3 CCMR2 = 0x1000 << 12 //  Bit 3.
 	OC4CE  CCMR2 = 0x01 << 15   //+ Output Compare 4 Clear Enable.
 	IC3PSC CCMR2 = 0x03 << 2    //+ IC3PSC[1:0] bits (Input Capture 3 Prescaler).
 	IC3F   CCMR2 = 0x0F << 4    //+ IC3F[3:0] bits (Input Capture 3 Filter).

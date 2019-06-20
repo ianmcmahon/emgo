@@ -162,46 +162,6 @@ type RMOTYPER struct{ mmio.UM32 }
 func (rm RMOTYPER) Load() OTYPER   { return OTYPER(rm.UM32.Load()) }
 func (rm RMOTYPER) Store(b OTYPER) { rm.UM32.Store(uint32(b)) }
 
-func (p *GPIO_Periph) OT_0() RMOTYPER {
-	return RMOTYPER{mmio.UM32{&p.OTYPER.U32, uint32(OT_0)}}
-}
-
-func (p *GPIO_Periph) OT_1() RMOTYPER {
-	return RMOTYPER{mmio.UM32{&p.OTYPER.U32, uint32(OT_1)}}
-}
-
-func (p *GPIO_Periph) OT_2() RMOTYPER {
-	return RMOTYPER{mmio.UM32{&p.OTYPER.U32, uint32(OT_2)}}
-}
-
-func (p *GPIO_Periph) OT_3() RMOTYPER {
-	return RMOTYPER{mmio.UM32{&p.OTYPER.U32, uint32(OT_3)}}
-}
-
-func (p *GPIO_Periph) OT_4() RMOTYPER {
-	return RMOTYPER{mmio.UM32{&p.OTYPER.U32, uint32(OT_4)}}
-}
-
-func (p *GPIO_Periph) OT_5() RMOTYPER {
-	return RMOTYPER{mmio.UM32{&p.OTYPER.U32, uint32(OT_5)}}
-}
-
-func (p *GPIO_Periph) OT_6() RMOTYPER {
-	return RMOTYPER{mmio.UM32{&p.OTYPER.U32, uint32(OT_6)}}
-}
-
-func (p *GPIO_Periph) OT_7() RMOTYPER {
-	return RMOTYPER{mmio.UM32{&p.OTYPER.U32, uint32(OT_7)}}
-}
-
-func (p *GPIO_Periph) OT_8() RMOTYPER {
-	return RMOTYPER{mmio.UM32{&p.OTYPER.U32, uint32(OT_8)}}
-}
-
-func (p *GPIO_Periph) OT_9() RMOTYPER {
-	return RMOTYPER{mmio.UM32{&p.OTYPER.U32, uint32(OT_9)}}
-}
-
 func (p *GPIO_Periph) OT_10() RMOTYPER {
 	return RMOTYPER{mmio.UM32{&p.OTYPER.U32, uint32(OT_10)}}
 }
@@ -435,46 +395,6 @@ type RMIDR struct{ mmio.UM32 }
 func (rm RMIDR) Load() IDR   { return IDR(rm.UM32.Load()) }
 func (rm RMIDR) Store(b IDR) { rm.UM32.Store(uint32(b)) }
 
-func (p *GPIO_Periph) V0() RMIDR {
-	return RMIDR{mmio.UM32{&p.IDR.U32, uint32(V0)}}
-}
-
-func (p *GPIO_Periph) V1() RMIDR {
-	return RMIDR{mmio.UM32{&p.IDR.U32, uint32(V1)}}
-}
-
-func (p *GPIO_Periph) V2() RMIDR {
-	return RMIDR{mmio.UM32{&p.IDR.U32, uint32(V2)}}
-}
-
-func (p *GPIO_Periph) V3() RMIDR {
-	return RMIDR{mmio.UM32{&p.IDR.U32, uint32(V3)}}
-}
-
-func (p *GPIO_Periph) V4() RMIDR {
-	return RMIDR{mmio.UM32{&p.IDR.U32, uint32(V4)}}
-}
-
-func (p *GPIO_Periph) V5() RMIDR {
-	return RMIDR{mmio.UM32{&p.IDR.U32, uint32(V5)}}
-}
-
-func (p *GPIO_Periph) V6() RMIDR {
-	return RMIDR{mmio.UM32{&p.IDR.U32, uint32(V6)}}
-}
-
-func (p *GPIO_Periph) V7() RMIDR {
-	return RMIDR{mmio.UM32{&p.IDR.U32, uint32(V7)}}
-}
-
-func (p *GPIO_Periph) V8() RMIDR {
-	return RMIDR{mmio.UM32{&p.IDR.U32, uint32(V8)}}
-}
-
-func (p *GPIO_Periph) V9() RMIDR {
-	return RMIDR{mmio.UM32{&p.IDR.U32, uint32(V9)}}
-}
-
 func (p *GPIO_Periph) V10() RMIDR {
 	return RMIDR{mmio.UM32{&p.IDR.U32, uint32(V10)}}
 }
@@ -525,46 +445,6 @@ type RMODR struct{ mmio.UM32 }
 
 func (rm RMODR) Load() ODR   { return ODR(rm.UM32.Load()) }
 func (rm RMODR) Store(b ODR) { rm.UM32.Store(uint32(b)) }
-
-func (p *GPIO_Periph) V0() RMODR {
-	return RMODR{mmio.UM32{&p.ODR.U32, uint32(V0)}}
-}
-
-func (p *GPIO_Periph) V1() RMODR {
-	return RMODR{mmio.UM32{&p.ODR.U32, uint32(V1)}}
-}
-
-func (p *GPIO_Periph) V2() RMODR {
-	return RMODR{mmio.UM32{&p.ODR.U32, uint32(V2)}}
-}
-
-func (p *GPIO_Periph) V3() RMODR {
-	return RMODR{mmio.UM32{&p.ODR.U32, uint32(V3)}}
-}
-
-func (p *GPIO_Periph) V4() RMODR {
-	return RMODR{mmio.UM32{&p.ODR.U32, uint32(V4)}}
-}
-
-func (p *GPIO_Periph) V5() RMODR {
-	return RMODR{mmio.UM32{&p.ODR.U32, uint32(V5)}}
-}
-
-func (p *GPIO_Periph) V6() RMODR {
-	return RMODR{mmio.UM32{&p.ODR.U32, uint32(V6)}}
-}
-
-func (p *GPIO_Periph) V7() RMODR {
-	return RMODR{mmio.UM32{&p.ODR.U32, uint32(V7)}}
-}
-
-func (p *GPIO_Periph) V8() RMODR {
-	return RMODR{mmio.UM32{&p.ODR.U32, uint32(V8)}}
-}
-
-func (p *GPIO_Periph) V9() RMODR {
-	return RMODR{mmio.UM32{&p.ODR.U32, uint32(V9)}}
-}
 
 func (p *GPIO_Periph) V10() RMODR {
 	return RMODR{mmio.UM32{&p.ODR.U32, uint32(V10)}}
@@ -617,46 +497,6 @@ type RMBSRR struct{ mmio.UM32 }
 func (rm RMBSRR) Load() BSRR   { return BSRR(rm.UM32.Load()) }
 func (rm RMBSRR) Store(b BSRR) { rm.UM32.Store(uint32(b)) }
 
-func (p *GPIO_Periph) BS_0() RMBSRR {
-	return RMBSRR{mmio.UM32{&p.BSRR.U32, uint32(BS_0)}}
-}
-
-func (p *GPIO_Periph) BS_1() RMBSRR {
-	return RMBSRR{mmio.UM32{&p.BSRR.U32, uint32(BS_1)}}
-}
-
-func (p *GPIO_Periph) BS_2() RMBSRR {
-	return RMBSRR{mmio.UM32{&p.BSRR.U32, uint32(BS_2)}}
-}
-
-func (p *GPIO_Periph) BS_3() RMBSRR {
-	return RMBSRR{mmio.UM32{&p.BSRR.U32, uint32(BS_3)}}
-}
-
-func (p *GPIO_Periph) BS_4() RMBSRR {
-	return RMBSRR{mmio.UM32{&p.BSRR.U32, uint32(BS_4)}}
-}
-
-func (p *GPIO_Periph) BS_5() RMBSRR {
-	return RMBSRR{mmio.UM32{&p.BSRR.U32, uint32(BS_5)}}
-}
-
-func (p *GPIO_Periph) BS_6() RMBSRR {
-	return RMBSRR{mmio.UM32{&p.BSRR.U32, uint32(BS_6)}}
-}
-
-func (p *GPIO_Periph) BS_7() RMBSRR {
-	return RMBSRR{mmio.UM32{&p.BSRR.U32, uint32(BS_7)}}
-}
-
-func (p *GPIO_Periph) BS_8() RMBSRR {
-	return RMBSRR{mmio.UM32{&p.BSRR.U32, uint32(BS_8)}}
-}
-
-func (p *GPIO_Periph) BS_9() RMBSRR {
-	return RMBSRR{mmio.UM32{&p.BSRR.U32, uint32(BS_9)}}
-}
-
 func (p *GPIO_Periph) BS_10() RMBSRR {
 	return RMBSRR{mmio.UM32{&p.BSRR.U32, uint32(BS_10)}}
 }
@@ -679,46 +519,6 @@ func (p *GPIO_Periph) BS_14() RMBSRR {
 
 func (p *GPIO_Periph) BS_15() RMBSRR {
 	return RMBSRR{mmio.UM32{&p.BSRR.U32, uint32(BS_15)}}
-}
-
-func (p *GPIO_Periph) BR_0() RMBSRR {
-	return RMBSRR{mmio.UM32{&p.BSRR.U32, uint32(BR_0)}}
-}
-
-func (p *GPIO_Periph) BR_1() RMBSRR {
-	return RMBSRR{mmio.UM32{&p.BSRR.U32, uint32(BR_1)}}
-}
-
-func (p *GPIO_Periph) BR_2() RMBSRR {
-	return RMBSRR{mmio.UM32{&p.BSRR.U32, uint32(BR_2)}}
-}
-
-func (p *GPIO_Periph) BR_3() RMBSRR {
-	return RMBSRR{mmio.UM32{&p.BSRR.U32, uint32(BR_3)}}
-}
-
-func (p *GPIO_Periph) BR_4() RMBSRR {
-	return RMBSRR{mmio.UM32{&p.BSRR.U32, uint32(BR_4)}}
-}
-
-func (p *GPIO_Periph) BR_5() RMBSRR {
-	return RMBSRR{mmio.UM32{&p.BSRR.U32, uint32(BR_5)}}
-}
-
-func (p *GPIO_Periph) BR_6() RMBSRR {
-	return RMBSRR{mmio.UM32{&p.BSRR.U32, uint32(BR_6)}}
-}
-
-func (p *GPIO_Periph) BR_7() RMBSRR {
-	return RMBSRR{mmio.UM32{&p.BSRR.U32, uint32(BR_7)}}
-}
-
-func (p *GPIO_Periph) BR_8() RMBSRR {
-	return RMBSRR{mmio.UM32{&p.BSRR.U32, uint32(BR_8)}}
-}
-
-func (p *GPIO_Periph) BR_9() RMBSRR {
-	return RMBSRR{mmio.UM32{&p.BSRR.U32, uint32(BR_9)}}
 }
 
 func (p *GPIO_Periph) BR_10() RMBSRR {
@@ -893,46 +693,6 @@ type RMBRR struct{ mmio.UM32 }
 
 func (rm RMBRR) Load() BRR   { return BRR(rm.UM32.Load()) }
 func (rm RMBRR) Store(b BRR) { rm.UM32.Store(uint32(b)) }
-
-func (p *GPIO_Periph) BR_0() RMBRR {
-	return RMBRR{mmio.UM32{&p.BRR.U32, uint32(BR_0)}}
-}
-
-func (p *GPIO_Periph) BR_1() RMBRR {
-	return RMBRR{mmio.UM32{&p.BRR.U32, uint32(BR_1)}}
-}
-
-func (p *GPIO_Periph) BR_2() RMBRR {
-	return RMBRR{mmio.UM32{&p.BRR.U32, uint32(BR_2)}}
-}
-
-func (p *GPIO_Periph) BR_3() RMBRR {
-	return RMBRR{mmio.UM32{&p.BRR.U32, uint32(BR_3)}}
-}
-
-func (p *GPIO_Periph) BR_4() RMBRR {
-	return RMBRR{mmio.UM32{&p.BRR.U32, uint32(BR_4)}}
-}
-
-func (p *GPIO_Periph) BR_5() RMBRR {
-	return RMBRR{mmio.UM32{&p.BRR.U32, uint32(BR_5)}}
-}
-
-func (p *GPIO_Periph) BR_6() RMBRR {
-	return RMBRR{mmio.UM32{&p.BRR.U32, uint32(BR_6)}}
-}
-
-func (p *GPIO_Periph) BR_7() RMBRR {
-	return RMBRR{mmio.UM32{&p.BRR.U32, uint32(BR_7)}}
-}
-
-func (p *GPIO_Periph) BR_8() RMBRR {
-	return RMBRR{mmio.UM32{&p.BRR.U32, uint32(BR_8)}}
-}
-
-func (p *GPIO_Periph) BR_9() RMBRR {
-	return RMBRR{mmio.UM32{&p.BRR.U32, uint32(BR_9)}}
-}
 
 func (p *GPIO_Periph) BR_10() RMBRR {
 	return RMBRR{mmio.UM32{&p.BRR.U32, uint32(BR_10)}}

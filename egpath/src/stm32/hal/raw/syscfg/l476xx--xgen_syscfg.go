@@ -127,30 +127,6 @@ func (p *SYSCFG_Periph) I2C3_FMP() RMCFGR1 {
 	return RMCFGR1{mmio.UM32{&p.CFGR1.U32, uint32(I2C3_FMP)}}
 }
 
-func (p *SYSCFG_Periph) FPU_IE_0() RMCFGR1 {
-	return RMCFGR1{mmio.UM32{&p.CFGR1.U32, uint32(FPU_IE_0)}}
-}
-
-func (p *SYSCFG_Periph) FPU_IE_1() RMCFGR1 {
-	return RMCFGR1{mmio.UM32{&p.CFGR1.U32, uint32(FPU_IE_1)}}
-}
-
-func (p *SYSCFG_Periph) FPU_IE_2() RMCFGR1 {
-	return RMCFGR1{mmio.UM32{&p.CFGR1.U32, uint32(FPU_IE_2)}}
-}
-
-func (p *SYSCFG_Periph) FPU_IE_3() RMCFGR1 {
-	return RMCFGR1{mmio.UM32{&p.CFGR1.U32, uint32(FPU_IE_3)}}
-}
-
-func (p *SYSCFG_Periph) FPU_IE_4() RMCFGR1 {
-	return RMCFGR1{mmio.UM32{&p.CFGR1.U32, uint32(FPU_IE_4)}}
-}
-
-func (p *SYSCFG_Periph) FPU_IE_5() RMCFGR1 {
-	return RMCFGR1{mmio.UM32{&p.CFGR1.U32, uint32(FPU_IE_5)}}
-}
-
 type EXTICR uint32
 
 func (b EXTICR) Field(mask EXTICR) int {

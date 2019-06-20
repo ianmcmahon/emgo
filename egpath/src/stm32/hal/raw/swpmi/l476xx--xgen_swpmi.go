@@ -334,10 +334,6 @@ type RMRFL struct{ mmio.UM32 }
 func (rm RMRFL) Load() RFL   { return RFL(rm.UM32.Load()) }
 func (rm RMRFL) Store(b RFL) { rm.UM32.Store(uint32(b)) }
 
-func (p *SWPMI_Periph) RFL() RMRFL {
-	return RMRFL{mmio.UM32{&p.RFL.U32, uint32(RFL)}}
-}
-
 type TDR uint32
 
 func (b TDR) Field(mask TDR) int {

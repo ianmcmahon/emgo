@@ -28,15 +28,9 @@ const (
 	PCKPOL  CR = 0x01 << 5  //+
 	HSPOL   CR = 0x01 << 6  //+
 	VSPOL   CR = 0x01 << 7  //+
-	FCRC_0  CR = 0x01 << 8  //+
-	FCRC_1  CR = 0x01 << 9  //+
-	EDM_0   CR = 0x01 << 10 //+
-	EDM_1   CR = 0x01 << 11 //+
 	CRE     CR = 0x01 << 12 //+
 	ENABLE  CR = 0x01 << 14 //+
 	BSM     CR = 0x03 << 16 //+
-	BSM_0   CR = 0x01 << 16
-	BSM_1   CR = 0x02 << 16
 	OEBS    CR = 0x01 << 18 //+
 	LSM     CR = 0x01 << 19 //+
 	OELS    CR = 0x01 << 20 //+
@@ -51,10 +45,6 @@ const (
 	PCKPOLn  = 5
 	HSPOLn   = 6
 	VSPOLn   = 7
-	FCRC_0n  = 8
-	FCRC_1n  = 9
-	EDM_0n   = 10
-	EDM_1n   = 11
 	CREn     = 12
 	ENABLEn  = 14
 	BSMn     = 16

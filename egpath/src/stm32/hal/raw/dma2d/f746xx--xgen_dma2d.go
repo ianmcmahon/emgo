@@ -638,22 +638,6 @@ type RMOCOLR struct{ mmio.UM32 }
 func (rm RMOCOLR) Load() OCOLR   { return OCOLR(rm.UM32.Load()) }
 func (rm RMOCOLR) Store(b OCOLR) { rm.UM32.Store(uint32(b)) }
 
-func (p *DMA2D_Periph) BLUE_1() RMOCOLR {
-	return RMOCOLR{mmio.UM32{&p.OCOLR.U32, uint32(BLUE_1)}}
-}
-
-func (p *DMA2D_Periph) GREEN_1() RMOCOLR {
-	return RMOCOLR{mmio.UM32{&p.OCOLR.U32, uint32(GREEN_1)}}
-}
-
-func (p *DMA2D_Periph) RED_1() RMOCOLR {
-	return RMOCOLR{mmio.UM32{&p.OCOLR.U32, uint32(RED_1)}}
-}
-
-func (p *DMA2D_Periph) ALPHA_1() RMOCOLR {
-	return RMOCOLR{mmio.UM32{&p.OCOLR.U32, uint32(ALPHA_1)}}
-}
-
 type OMAR uint32
 
 func (b OMAR) Field(mask OMAR) int {

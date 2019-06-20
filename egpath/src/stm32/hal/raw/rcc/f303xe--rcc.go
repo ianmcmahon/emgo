@@ -103,7 +103,6 @@ const (
 	PLLMUL15                 CFGR = 0x0D << 18 //  PLL input clock*15.
 	PLLMUL16                 CFGR = 0x0E << 18 //  PLL input clock*16.
 	USBPRE                   CFGR = 0x01 << 22 //+ USB prescaler.
-	USBPRE_DIV1_5            CFGR = 0x00 << 22 //  USB prescaler is PLL clock divided by 1.5.
 	USBPRE_DIV1              CFGR = 0x01 << 22 //  USB prescaler is PLL clock divided by 1.
 	I2SSRC                   CFGR = 0x01 << 23 //+ I2S external clock source selection.
 	I2SSRC_SYSCLK            CFGR = 0x00 << 23 //  System clock selected as I2S clock source.

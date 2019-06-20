@@ -73,25 +73,30 @@ const (
 )
 
 const (
-	ADD1_7  OAR1 = 0x7F << 1  //+ Interface Address.
-	ADD8_9  OAR1 = 0x03 << 8  //+ Interface Address.
 	ADD0    OAR1 = 0x01 << 0  //+ Bit 0.
-	ADD1    OAR1 = 0x01 << 1  //  Bit 1.
-	ADD2    OAR1 = 0x02 << 1  //  Bit 2.
-	ADD3    OAR1 = 0x04 << 1  //  Bit 3.
-	ADD4    OAR1 = 0x08 << 1  //  Bit 4.
-	ADD5    OAR1 = 0x10 << 1  //  Bit 5.
-	ADD6    OAR1 = 0x20 << 1  //  Bit 6.
-	ADD7    OAR1 = 0x40 << 1  //  Bit 7.
-	ADD8    OAR1 = 0x01 << 8  //  Bit 8.
-	ADD9    OAR1 = 0x02 << 8  //  Bit 9.
+	ADD1    OAR1 = 0x01 << 1  //+ Bit 1.
+	ADD2    OAR1 = 0x01 << 2  //+ Bit 2.
+	ADD3    OAR1 = 0x01 << 3  //+ Bit 3.
+	ADD4    OAR1 = 0x01 << 4  //+ Bit 4.
+	ADD5    OAR1 = 0x01 << 5  //+ Bit 5.
+	ADD6    OAR1 = 0x01 << 6  //+ Bit 6.
+	ADD7    OAR1 = 0x01 << 7  //+ Bit 7.
+	ADD8    OAR1 = 0x01 << 8  //+ Bit 8.
+	ADD9    OAR1 = 0x01 << 9  //+ Bit 9.
 	ADDMODE OAR1 = 0x01 << 15 //+ Addressing Mode (Slave mode).
 )
 
 const (
-	ADD1_7n  = 1
-	ADD8_9n  = 8
 	ADD0n    = 0
+	ADD1n    = 1
+	ADD2n    = 2
+	ADD3n    = 3
+	ADD4n    = 4
+	ADD5n    = 5
+	ADD6n    = 6
+	ADD7n    = 7
+	ADD8n    = 8
+	ADD9n    = 9
 	ADDMODEn = 15
 )
 

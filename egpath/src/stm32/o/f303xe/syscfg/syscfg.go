@@ -28,9 +28,6 @@ package syscfg
 
 const (
 	MEM_MODE            CFGR1 = 0x07 << 0  //+ SYSCFG_Memory Remap Config.
-	MEM_MODE_0          CFGR1 = 0x01 << 0  //  Bit 0.
-	MEM_MODE_1          CFGR1 = 0x02 << 0  //  Bit 1.
-	MEM_MODE_2          CFGR1 = 0x04 << 0  //  Bit 2.
 	USB_IT_RMP          CFGR1 = 0x01 << 5  //+ USB interrupt remap.
 	TIM1_ITR3_RMP       CFGR1 = 0x01 << 6  //+ Timer 1 ITR3 selection.
 	DAC1_TRIG1_RMP      CFGR1 = 0x01 << 7  //+ DAC1 Trigger1 remap.

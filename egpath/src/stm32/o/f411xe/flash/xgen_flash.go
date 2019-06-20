@@ -284,12 +284,8 @@ func (p *FLASH_Periph) OPTSTRT(n int) RMOPTCR {
 	return RMOPTCR{mmio.UM32{&p.OPTCR[n].U32, uint32(OPTSTRT)}}
 }
 
-func (p *FLASH_Periph) BOR_LEV_0(n int) RMOPTCR {
-	return RMOPTCR{mmio.UM32{&p.OPTCR[n].U32, uint32(BOR_LEV_0)}}
-}
-
-func (p *FLASH_Periph) BOR_LEV_1(n int) RMOPTCR {
-	return RMOPTCR{mmio.UM32{&p.OPTCR[n].U32, uint32(BOR_LEV_1)}}
+func (p *FLASH_Periph) BOR_LEV(n int) RMOPTCR {
+	return RMOPTCR{mmio.UM32{&p.OPTCR[n].U32, uint32(BOR_LEV)}}
 }
 
 func (p *FLASH_Periph) WDG_SW(n int) RMOPTCR {

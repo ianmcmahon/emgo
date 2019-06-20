@@ -93,15 +93,11 @@ const (
 )
 
 const (
-	GINT      GAHBCFG = 0x01 << 0 //+ Global interrupt mask.
-	HBSTLEN   GAHBCFG = 0x0F << 1 //+ Burst length/type.
-	HBSTLEN_0 GAHBCFG = 0x01 << 1 //  Bit 0.
-	HBSTLEN_1 GAHBCFG = 0x02 << 1 //  Bit 1.
-	HBSTLEN_2 GAHBCFG = 0x04 << 1 //  Bit 2.
-	HBSTLEN_3 GAHBCFG = 0x08 << 1 //  Bit 3.
-	DMAEN     GAHBCFG = 0x01 << 5 //+ DMA enable.
-	TXFELVL   GAHBCFG = 0x01 << 7 //+ TxFIFO empty level.
-	PTXFELVL  GAHBCFG = 0x01 << 8 //+ Periodic TxFIFO empty level.
+	GINT     GAHBCFG = 0x01 << 0 //+ Global interrupt mask.
+	HBSTLEN  GAHBCFG = 0x0F << 1 //+ Burst length/type.
+	DMAEN    GAHBCFG = 0x01 << 5 //+ DMA enable.
+	TXFELVL  GAHBCFG = 0x01 << 7 //+ TxFIFO empty level.
+	PTXFELVL GAHBCFG = 0x01 << 8 //+ Periodic TxFIFO empty level.
 )
 
 const (
@@ -114,17 +110,10 @@ const (
 
 const (
 	TOCAL      GUSBCFG = 0x07 << 0  //+ FS timeout calibration.
-	TOCAL_0    GUSBCFG = 0x01 << 0  //  Bit 0.
-	TOCAL_1    GUSBCFG = 0x02 << 0  //  Bit 1.
-	TOCAL_2    GUSBCFG = 0x04 << 0  //  Bit 2.
 	PHYSEL     GUSBCFG = 0x01 << 6  //+ USB 2.0 high-speed ULPI PHY or USB 1.1 full-speed serial transceiver select.
 	SRPCAP     GUSBCFG = 0x01 << 8  //+ SRP-capable.
 	HNPCAP     GUSBCFG = 0x01 << 9  //+ HNP-capable.
 	TRDT       GUSBCFG = 0x0F << 10 //+ USB turnaround time.
-	TRDT_0     GUSBCFG = 0x01 << 10 //  Bit 0.
-	TRDT_1     GUSBCFG = 0x02 << 10 //  Bit 1.
-	TRDT_2     GUSBCFG = 0x04 << 10 //  Bit 2.
-	TRDT_3     GUSBCFG = 0x08 << 10 //  Bit 3.
 	PHYLPCS    GUSBCFG = 0x01 << 15 //+ PHY Low-power clock select.
 	ULPIFSLS   GUSBCFG = 0x01 << 17 //+ ULPI FS/LS select.
 	ULPIAR     GUSBCFG = 0x01 << 18 //+ ULPI Auto-resume.
@@ -162,19 +151,14 @@ const (
 )
 
 const (
-	CSRST    GRSTCTL = 0x01 << 0  //+ Core soft reset.
-	HSRST    GRSTCTL = 0x01 << 1  //+ HCLK soft reset.
-	FCRST    GRSTCTL = 0x01 << 2  //+ Host frame counter reset.
-	RXFFLSH  GRSTCTL = 0x01 << 4  //+ RxFIFO flush.
-	TXFFLSH  GRSTCTL = 0x01 << 5  //+ TxFIFO flush.
-	TXFNUM   GRSTCTL = 0x1F << 6  //+ TxFIFO number.
-	TXFNUM_0 GRSTCTL = 0x01 << 6  //  Bit 0.
-	TXFNUM_1 GRSTCTL = 0x02 << 6  //  Bit 1.
-	TXFNUM_2 GRSTCTL = 0x04 << 6  //  Bit 2.
-	TXFNUM_3 GRSTCTL = 0x08 << 6  //  Bit 3.
-	TXFNUM_4 GRSTCTL = 0x10 << 6  //  Bit 4.
-	DMAREQ   GRSTCTL = 0x01 << 30 //+ DMA request signal.
-	AHBIDL   GRSTCTL = 0x01 << 31 //+ AHB master idle.
+	CSRST   GRSTCTL = 0x01 << 0  //+ Core soft reset.
+	HSRST   GRSTCTL = 0x01 << 1  //+ HCLK soft reset.
+	FCRST   GRSTCTL = 0x01 << 2  //+ Host frame counter reset.
+	RXFFLSH GRSTCTL = 0x01 << 4  //+ RxFIFO flush.
+	TXFFLSH GRSTCTL = 0x01 << 5  //+ TxFIFO flush.
+	TXFNUM  GRSTCTL = 0x1F << 6  //+ TxFIFO number.
+	DMAREQ  GRSTCTL = 0x01 << 30 //+ DMA request signal.
+	AHBIDL  GRSTCTL = 0x01 << 31 //+ AHB master idle.
 )
 
 const (

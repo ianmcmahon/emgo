@@ -118,15 +118,6 @@ const (
 )
 
 const (
-	RFL     RFL = 0x1F << 0 //+ RFL[4:0] bits (Receive Frame length).
-	RFL_0_1 RFL = 0x03 << 0 //  RFL[1:0] bits (number of relevant bytes for the last SWPMI_RDR register read.).
-)
-
-const (
-	RFLn = 0
-)
-
-const (
 	TD TDR = 0xFFFFFFFF << 0 //+ Transmit Data Register.
 )
 

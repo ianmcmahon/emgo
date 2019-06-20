@@ -41,25 +41,13 @@ const (
 	PCE    CR1 = 0x01 << 10    //+ Parity Control Enable.
 	WAKE   CR1 = 0x01 << 11    //+ Receiver Wakeup method.
 	M      CR1 = 0x10001 << 12 //+ Word length.
-	M_0    CR1 = 0x01 << 12    //  Word length - Bit 0.
 	MME    CR1 = 0x01 << 13    //+ Mute Mode Enable.
 	CMIE   CR1 = 0x01 << 14    //+ Character match interrupt enable.
 	OVER8  CR1 = 0x01 << 15    //+ Oversampling by 8-bit or 16-bit mode.
 	DEDT   CR1 = 0x1F << 16    //+ DEDT[4:0] bits (Driver Enable Deassertion Time).
-	DEDT_0 CR1 = 0x01 << 16    //  Bit 0.
-	DEDT_1 CR1 = 0x02 << 16    //  Bit 1.
-	DEDT_2 CR1 = 0x04 << 16    //  Bit 2.
-	DEDT_3 CR1 = 0x08 << 16    //  Bit 3.
-	DEDT_4 CR1 = 0x10 << 16    //  Bit 4.
 	DEAT   CR1 = 0x1F << 21    //+ DEAT[4:0] bits (Driver Enable Assertion Time).
-	DEAT_0 CR1 = 0x01 << 21    //  Bit 0.
-	DEAT_1 CR1 = 0x02 << 21    //  Bit 1.
-	DEAT_2 CR1 = 0x04 << 21    //  Bit 2.
-	DEAT_3 CR1 = 0x08 << 21    //  Bit 3.
-	DEAT_4 CR1 = 0x10 << 21    //  Bit 4.
 	RTOIE  CR1 = 0x01 << 26    //+ Receive Time Out interrupt enable.
 	EOBIE  CR1 = 0x01 << 27    //+ End of Block interrupt enable.
-	M_1    CR1 = 0x10000 << 12 //  Word length - Bit 1.
 )
 
 const (
@@ -85,28 +73,24 @@ const (
 )
 
 const (
-	ADDM7     CR2 = 0x01 << 4  //+ 7-bit or 4-bit Address Detection.
-	LBDL      CR2 = 0x01 << 5  //+ LIN Break Detection Length.
-	LBDIE     CR2 = 0x01 << 6  //+ LIN Break Detection Interrupt Enable.
-	LBCL      CR2 = 0x01 << 8  //+ Last Bit Clock pulse.
-	CPHA      CR2 = 0x01 << 9  //+ Clock Phase.
-	CPOL      CR2 = 0x01 << 10 //+ Clock Polarity.
-	CLKEN     CR2 = 0x01 << 11 //+ Clock Enable.
-	STOP      CR2 = 0x03 << 12 //+ STOP[1:0] bits (STOP bits).
-	STOP_0    CR2 = 0x01 << 12 //  Bit 0.
-	STOP_1    CR2 = 0x02 << 12 //  Bit 1.
-	LINEN     CR2 = 0x01 << 14 //+ LIN mode enable.
-	SWAP      CR2 = 0x01 << 15 //+ SWAP TX/RX pins.
-	RXINV     CR2 = 0x01 << 16 //+ RX pin active level inversion.
-	TXINV     CR2 = 0x01 << 17 //+ TX pin active level inversion.
-	DATAINV   CR2 = 0x01 << 18 //+ Binary data inversion.
-	MSBFIRST  CR2 = 0x01 << 19 //+ Most Significant Bit First.
-	ABREN     CR2 = 0x01 << 20 //+ Auto Baud-Rate Enable.
-	ABRMODE   CR2 = 0x03 << 21 //+ ABRMOD[1:0] bits (Auto Baud-Rate Mode).
-	ABRMODE_0 CR2 = 0x01 << 21 //  Bit 0.
-	ABRMODE_1 CR2 = 0x02 << 21 //  Bit 1.
-	RTOEN     CR2 = 0x01 << 23 //+ Receiver Time-Out enable.
-	ADD       CR2 = 0xFF << 24 //+ Address of the USART node.
+	ADDM7    CR2 = 0x01 << 4  //+ 7-bit or 4-bit Address Detection.
+	LBDL     CR2 = 0x01 << 5  //+ LIN Break Detection Length.
+	LBDIE    CR2 = 0x01 << 6  //+ LIN Break Detection Interrupt Enable.
+	LBCL     CR2 = 0x01 << 8  //+ Last Bit Clock pulse.
+	CPHA     CR2 = 0x01 << 9  //+ Clock Phase.
+	CPOL     CR2 = 0x01 << 10 //+ Clock Polarity.
+	CLKEN    CR2 = 0x01 << 11 //+ Clock Enable.
+	STOP     CR2 = 0x03 << 12 //+ STOP[1:0] bits (STOP bits).
+	LINEN    CR2 = 0x01 << 14 //+ LIN mode enable.
+	SWAP     CR2 = 0x01 << 15 //+ SWAP TX/RX pins.
+	RXINV    CR2 = 0x01 << 16 //+ RX pin active level inversion.
+	TXINV    CR2 = 0x01 << 17 //+ TX pin active level inversion.
+	DATAINV  CR2 = 0x01 << 18 //+ Binary data inversion.
+	MSBFIRST CR2 = 0x01 << 19 //+ Most Significant Bit First.
+	ABREN    CR2 = 0x01 << 20 //+ Auto Baud-Rate Enable.
+	ABRMODE  CR2 = 0x03 << 21 //+ ABRMOD[1:0] bits (Auto Baud-Rate Mode).
+	RTOEN    CR2 = 0x01 << 23 //+ Receiver Time-Out enable.
+	ADD      CR2 = 0xFF << 24 //+ Address of the USART node.
 )
 
 const (
@@ -131,26 +115,23 @@ const (
 )
 
 const (
-	EIE       CR3 = 0x01 << 0  //+ Error Interrupt Enable.
-	IREN      CR3 = 0x01 << 1  //+ IrDA mode Enable.
-	IRLP      CR3 = 0x01 << 2  //+ IrDA Low-Power.
-	HDSEL     CR3 = 0x01 << 3  //+ Half-Duplex Selection.
-	NACK      CR3 = 0x01 << 4  //+ SmartCard NACK enable.
-	SCEN      CR3 = 0x01 << 5  //+ SmartCard mode enable.
-	DMAR      CR3 = 0x01 << 6  //+ DMA Enable Receiver.
-	DMAT      CR3 = 0x01 << 7  //+ DMA Enable Transmitter.
-	RTSE      CR3 = 0x01 << 8  //+ RTS Enable.
-	CTSE      CR3 = 0x01 << 9  //+ CTS Enable.
-	CTSIE     CR3 = 0x01 << 10 //+ CTS Interrupt Enable.
-	ONEBIT    CR3 = 0x01 << 11 //+ One sample bit method enable.
-	OVRDIS    CR3 = 0x01 << 12 //+ Overrun Disable.
-	DDRE      CR3 = 0x01 << 13 //+ DMA Disable on Reception Error.
-	DEM       CR3 = 0x01 << 14 //+ Driver Enable Mode.
-	DEP       CR3 = 0x01 << 15 //+ Driver Enable Polarity Selection.
-	SCARCNT   CR3 = 0x07 << 17 //+ SCARCNT[2:0] bits (SmartCard Auto-Retry Count).
-	SCARCNT_0 CR3 = 0x01 << 17 //  Bit 0.
-	SCARCNT_1 CR3 = 0x02 << 17 //  Bit 1.
-	SCARCNT_2 CR3 = 0x04 << 17 //  Bit 2.
+	EIE     CR3 = 0x01 << 0  //+ Error Interrupt Enable.
+	IREN    CR3 = 0x01 << 1  //+ IrDA mode Enable.
+	IRLP    CR3 = 0x01 << 2  //+ IrDA Low-Power.
+	HDSEL   CR3 = 0x01 << 3  //+ Half-Duplex Selection.
+	NACK    CR3 = 0x01 << 4  //+ SmartCard NACK enable.
+	SCEN    CR3 = 0x01 << 5  //+ SmartCard mode enable.
+	DMAR    CR3 = 0x01 << 6  //+ DMA Enable Receiver.
+	DMAT    CR3 = 0x01 << 7  //+ DMA Enable Transmitter.
+	RTSE    CR3 = 0x01 << 8  //+ RTS Enable.
+	CTSE    CR3 = 0x01 << 9  //+ CTS Enable.
+	CTSIE   CR3 = 0x01 << 10 //+ CTS Interrupt Enable.
+	ONEBIT  CR3 = 0x01 << 11 //+ One sample bit method enable.
+	OVRDIS  CR3 = 0x01 << 12 //+ Overrun Disable.
+	DDRE    CR3 = 0x01 << 13 //+ DMA Disable on Reception Error.
+	DEM     CR3 = 0x01 << 14 //+ Driver Enable Mode.
+	DEP     CR3 = 0x01 << 15 //+ Driver Enable Polarity Selection.
+	SCARCNT CR3 = 0x07 << 17 //+ SCARCNT[2:0] bits (SmartCard Auto-Retry Count).
 )
 
 const (

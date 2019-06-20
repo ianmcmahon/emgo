@@ -92,22 +92,6 @@ func (p *DCMI_Periph) VSPOL() RMCR {
 	return RMCR{mmio.UM32{&p.CR.U32, uint32(VSPOL)}}
 }
 
-func (p *DCMI_Periph) FCRC_0() RMCR {
-	return RMCR{mmio.UM32{&p.CR.U32, uint32(FCRC_0)}}
-}
-
-func (p *DCMI_Periph) FCRC_1() RMCR {
-	return RMCR{mmio.UM32{&p.CR.U32, uint32(FCRC_1)}}
-}
-
-func (p *DCMI_Periph) EDM_0() RMCR {
-	return RMCR{mmio.UM32{&p.CR.U32, uint32(EDM_0)}}
-}
-
-func (p *DCMI_Periph) EDM_1() RMCR {
-	return RMCR{mmio.UM32{&p.CR.U32, uint32(EDM_1)}}
-}
-
 func (p *DCMI_Periph) CRE() RMCR {
 	return RMCR{mmio.UM32{&p.CR.U32, uint32(CRE)}}
 }

@@ -67,21 +67,15 @@ const (
 )
 
 const (
-	PG      CR = 0x01 << 0 //+
-	SER     CR = 0x01 << 1 //+
-	MER     CR = 0x01 << 2 //+
-	SNB     CR = 0x0F << 3 //+
-	SNB_0   CR = 0x01 << 3
-	SNB_1   CR = 0x02 << 3
-	SNB_2   CR = 0x04 << 3
-	SNB_3   CR = 0x08 << 3
-	PSIZE   CR = 0x03 << 8 //+
-	PSIZE_0 CR = 0x01 << 8
-	PSIZE_1 CR = 0x02 << 8
-	STRT    CR = 0x01 << 16 //+
-	EOPIE   CR = 0x01 << 24 //+
-	ERRIE   CR = 0x01 << 25 //+
-	LOCK    CR = 0x01 << 31 //+
+	PG    CR = 0x01 << 0  //+
+	SER   CR = 0x01 << 1  //+
+	MER   CR = 0x01 << 2  //+
+	SNB   CR = 0x0F << 3  //+
+	PSIZE CR = 0x03 << 8  //+
+	STRT  CR = 0x01 << 16 //+
+	EOPIE CR = 0x01 << 24 //+
+	ERRIE CR = 0x01 << 25 //+
+	LOCK  CR = 0x01 << 31 //+
 )
 
 const (
@@ -97,33 +91,15 @@ const (
 )
 
 const (
-	OPTLOCK    OPTCR = 0x01 << 0 //+
-	OPTSTRT    OPTCR = 0x01 << 1 //+
-	BOR_LEV    OPTCR = 0x03 << 2 //+
-	BOR_LEV_0  OPTCR = 0x01 << 2
-	BOR_LEV_1  OPTCR = 0x02 << 2
-	WWDG_SW    OPTCR = 0x01 << 4 //+
-	IWDG_SW    OPTCR = 0x01 << 5 //+
-	nRST_STOP  OPTCR = 0x01 << 6 //+
-	nRST_STDBY OPTCR = 0x01 << 7 //+
-	RDP        OPTCR = 0xFF << 8 //+
-	RDP_0      OPTCR = 0x01 << 8
-	RDP_1      OPTCR = 0x02 << 8
-	RDP_2      OPTCR = 0x04 << 8
-	RDP_3      OPTCR = 0x08 << 8
-	RDP_4      OPTCR = 0x10 << 8
-	RDP_5      OPTCR = 0x20 << 8
-	RDP_6      OPTCR = 0x40 << 8
-	RDP_7      OPTCR = 0x80 << 8
+	OPTLOCK    OPTCR = 0x01 << 0  //+
+	OPTSTRT    OPTCR = 0x01 << 1  //+
+	BOR_LEV    OPTCR = 0x03 << 2  //+
+	WWDG_SW    OPTCR = 0x01 << 4  //+
+	IWDG_SW    OPTCR = 0x01 << 5  //+
+	nRST_STOP  OPTCR = 0x01 << 6  //+
+	nRST_STDBY OPTCR = 0x01 << 7  //+
+	RDP        OPTCR = 0xFF << 8  //+
 	nWRP       OPTCR = 0xFF << 16 //+
-	nWRP_0     OPTCR = 0x01 << 16
-	nWRP_1     OPTCR = 0x02 << 16
-	nWRP_2     OPTCR = 0x04 << 16
-	nWRP_3     OPTCR = 0x08 << 16
-	nWRP_4     OPTCR = 0x10 << 16
-	nWRP_5     OPTCR = 0x20 << 16
-	nWRP_6     OPTCR = 0x40 << 16
-	nWRP_7     OPTCR = 0x80 << 16
 	IWDG_STDBY OPTCR = 0x01 << 30 //+
 	IWDG_STOP  OPTCR = 0x01 << 31 //+
 )

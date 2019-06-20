@@ -37,12 +37,6 @@ const (
 	I2C1_FMP    CFGR1 = 0x01 << 20 //+ I2C1 Fast mode plus.
 	I2C2_FMP    CFGR1 = 0x01 << 21 //+ I2C2 Fast mode plus.
 	I2C3_FMP    CFGR1 = 0x01 << 22 //+ I2C3 Fast mode plus.
-	FPU_IE_0    CFGR1 = 0x01 << 26 //+ Invalid operation Interrupt enable.
-	FPU_IE_1    CFGR1 = 0x01 << 27 //+ Divide-by-zero Interrupt enable.
-	FPU_IE_2    CFGR1 = 0x01 << 28 //+ Underflow Interrupt enable.
-	FPU_IE_3    CFGR1 = 0x01 << 29 //+ Overflow Interrupt enable.
-	FPU_IE_4    CFGR1 = 0x01 << 30 //+ Input denormal Interrupt enable.
-	FPU_IE_5    CFGR1 = 0x01 << 31 //+ Inexact Interrupt enable (interrupt disabled at reset).
 )
 
 const (
@@ -55,12 +49,6 @@ const (
 	I2C1_FMPn    = 20
 	I2C2_FMPn    = 21
 	I2C3_FMPn    = 22
-	FPU_IE_0n    = 26
-	FPU_IE_1n    = 27
-	FPU_IE_2n    = 28
-	FPU_IE_3n    = 29
-	FPU_IE_4n    = 30
-	FPU_IE_5n    = 31
 )
 
 const (

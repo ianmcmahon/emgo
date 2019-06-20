@@ -89,26 +89,14 @@ const (
 )
 
 const (
-	OPTLOCK    OPTCR = 0x01 << 0 //+
-	OPTSTRT    OPTCR = 0x01 << 1 //+
-	BOR_LEV_0  OPTCR = 0x01 << 2 //+
-	BOR_LEV_1  OPTCR = 0x01 << 3 //+
-	BOR_LEV    OPTCR = 0x03 << 2
+	OPTLOCK    OPTCR = 0x01 << 0   //+
+	OPTSTRT    OPTCR = 0x01 << 1   //+
+	BOR_LEV    OPTCR = 0x03 << 2   //+
 	WDG_SW     OPTCR = 0x01 << 5   //+
 	nRST_STOP  OPTCR = 0x01 << 6   //+
 	nRST_STDBY OPTCR = 0x01 << 7   //+
 	RDP        OPTCR = 0xFF << 8   //+
 	nWRP       OPTCR = 0xFFF << 16 //+
-	nWRP_0     OPTCR = 0x01 << 16
-	nWRP_1     OPTCR = 0x02 << 16
-	nWRP_2     OPTCR = 0x04 << 16
-	nWRP_3     OPTCR = 0x08 << 16
-	nWRP_4     OPTCR = 0x10 << 16
-	nWRP_5     OPTCR = 0x20 << 16
-	nWRP_6     OPTCR = 0x40 << 16
-	nWRP_7     OPTCR = 0x80 << 16
-	nWRP_8     OPTCR = 0x100 << 16
-	nWRP_9     OPTCR = 0x200 << 16
 	nWRP_10    OPTCR = 0x400 << 16
 	nWRP_11    OPTCR = 0x800 << 16
 )
@@ -116,8 +104,7 @@ const (
 const (
 	OPTLOCKn    = 0
 	OPTSTRTn    = 1
-	BOR_LEV_0n  = 2
-	BOR_LEV_1n  = 3
+	BOR_LEVn    = 2
 	WDG_SWn     = 5
 	nRST_STOPn  = 6
 	nRST_STDBYn = 7

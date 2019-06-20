@@ -40,20 +40,7 @@ const (
 	HSION     CR = 0x01 << 0  //+
 	HSIRDY    CR = 0x01 << 1  //+
 	HSITRIM   CR = 0x1F << 3  //+
-	HSITRIM_0 CR = 0x01 << 3  //  Bit 0.
-	HSITRIM_1 CR = 0x02 << 3  //  Bit 1.
-	HSITRIM_2 CR = 0x04 << 3  //  Bit 2.
-	HSITRIM_3 CR = 0x08 << 3  //  Bit 3.
-	HSITRIM_4 CR = 0x10 << 3  //  Bit 4.
 	HSICAL    CR = 0xFF << 8  //+
-	HSICAL_0  CR = 0x01 << 8  //  Bit 0.
-	HSICAL_1  CR = 0x02 << 8  //  Bit 1.
-	HSICAL_2  CR = 0x04 << 8  //  Bit 2.
-	HSICAL_3  CR = 0x08 << 8  //  Bit 3.
-	HSICAL_4  CR = 0x10 << 8  //  Bit 4.
-	HSICAL_5  CR = 0x20 << 8  //  Bit 5.
-	HSICAL_6  CR = 0x40 << 8  //  Bit 6.
-	HSICAL_7  CR = 0x80 << 8  //  Bit 7.
 	HSEON     CR = 0x01 << 16 //+
 	HSERDY    CR = 0x01 << 17 //+
 	HSEBYP    CR = 0x01 << 18 //+
@@ -84,34 +71,13 @@ const (
 )
 
 const (
-	PLLM       PLLCFGR = 0x3F << 0 //+
-	PLLM_0     PLLCFGR = 0x01 << 0
-	PLLM_1     PLLCFGR = 0x02 << 0
-	PLLM_2     PLLCFGR = 0x04 << 0
-	PLLM_3     PLLCFGR = 0x08 << 0
-	PLLM_4     PLLCFGR = 0x10 << 0
-	PLLM_5     PLLCFGR = 0x20 << 0
+	PLLM       PLLCFGR = 0x3F << 0  //+
 	PLLN       PLLCFGR = 0x1FF << 6 //+
-	PLLN_0     PLLCFGR = 0x01 << 6
-	PLLN_1     PLLCFGR = 0x02 << 6
-	PLLN_2     PLLCFGR = 0x04 << 6
-	PLLN_3     PLLCFGR = 0x08 << 6
-	PLLN_4     PLLCFGR = 0x10 << 6
-	PLLN_5     PLLCFGR = 0x20 << 6
-	PLLN_6     PLLCFGR = 0x40 << 6
-	PLLN_7     PLLCFGR = 0x80 << 6
-	PLLN_8     PLLCFGR = 0x100 << 6
 	PLLP       PLLCFGR = 0x03 << 16 //+
-	PLLP_0     PLLCFGR = 0x01 << 16
-	PLLP_1     PLLCFGR = 0x02 << 16
 	PLLSRC     PLLCFGR = 0x01 << 22 //+
 	PLLSRC_HSE PLLCFGR = 0x01 << 22
 	PLLSRC_HSI PLLCFGR = 0x00 << 22
 	PLLQ       PLLCFGR = 0x0F << 24 //+
-	PLLQ_0     PLLCFGR = 0x01 << 24
-	PLLQ_1     PLLCFGR = 0x02 << 24
-	PLLQ_2     PLLCFGR = 0x04 << 24
-	PLLQ_3     PLLCFGR = 0x08 << 24
 )
 
 const (
@@ -124,22 +90,14 @@ const (
 
 const (
 	SW          CFGR = 0x03 << 0  //+ SW[1:0] bits (System clock Switch).
-	SW_0        CFGR = 0x01 << 0  //  Bit 0.
-	SW_1        CFGR = 0x02 << 0  //  Bit 1.
 	SW_HSI      CFGR = 0x00 << 0  //  HSI selected as system clock.
 	SW_HSE      CFGR = 0x01 << 0  //  HSE selected as system clock.
 	SW_PLL      CFGR = 0x02 << 0  //  PLL selected as system clock.
 	SWS         CFGR = 0x03 << 2  //+ SWS[1:0] bits (System Clock Switch Status).
-	SWS_0       CFGR = 0x01 << 2  //  Bit 0.
-	SWS_1       CFGR = 0x02 << 2  //  Bit 1.
 	SWS_HSI     CFGR = 0x00 << 2  //  HSI oscillator used as system clock.
 	SWS_HSE     CFGR = 0x01 << 2  //  HSE oscillator used as system clock.
 	SWS_PLL     CFGR = 0x02 << 2  //  PLL used as system clock.
 	HPRE        CFGR = 0x0F << 4  //+ HPRE[3:0] bits (AHB prescaler).
-	HPRE_0      CFGR = 0x01 << 4  //  Bit 0.
-	HPRE_1      CFGR = 0x02 << 4  //  Bit 1.
-	HPRE_2      CFGR = 0x04 << 4  //  Bit 2.
-	HPRE_3      CFGR = 0x08 << 4  //  Bit 3.
 	HPRE_DIV1   CFGR = 0x00 << 4  //  SYSCLK not divided.
 	HPRE_DIV2   CFGR = 0x08 << 4  //  SYSCLK divided by 2.
 	HPRE_DIV4   CFGR = 0x09 << 4  //  SYSCLK divided by 4.
@@ -150,44 +108,23 @@ const (
 	HPRE_DIV256 CFGR = 0x0E << 4  //  SYSCLK divided by 256.
 	HPRE_DIV512 CFGR = 0x0F << 4  //  SYSCLK divided by 512.
 	PPRE1       CFGR = 0x07 << 10 //+ PRE1[2:0] bits (APB1 prescaler).
-	PPRE1_0     CFGR = 0x01 << 10 //  Bit 0.
-	PPRE1_1     CFGR = 0x02 << 10 //  Bit 1.
-	PPRE1_2     CFGR = 0x04 << 10 //  Bit 2.
 	PPRE1_DIV1  CFGR = 0x00 << 10 //  HCLK not divided.
 	PPRE1_DIV2  CFGR = 0x04 << 10 //  HCLK divided by 2.
 	PPRE1_DIV4  CFGR = 0x05 << 10 //  HCLK divided by 4.
 	PPRE1_DIV8  CFGR = 0x06 << 10 //  HCLK divided by 8.
 	PPRE1_DIV16 CFGR = 0x07 << 10 //  HCLK divided by 16.
 	PPRE2       CFGR = 0x07 << 13 //+ PRE2[2:0] bits (APB2 prescaler).
-	PPRE2_0     CFGR = 0x01 << 13 //  Bit 0.
-	PPRE2_1     CFGR = 0x02 << 13 //  Bit 1.
-	PPRE2_2     CFGR = 0x04 << 13 //  Bit 2.
 	PPRE2_DIV1  CFGR = 0x00 << 13 //  HCLK not divided.
 	PPRE2_DIV2  CFGR = 0x04 << 13 //  HCLK divided by 2.
 	PPRE2_DIV4  CFGR = 0x05 << 13 //  HCLK divided by 4.
 	PPRE2_DIV8  CFGR = 0x06 << 13 //  HCLK divided by 8.
 	PPRE2_DIV16 CFGR = 0x07 << 13 //  HCLK divided by 16.
 	RTCPRE      CFGR = 0x1F << 16 //+
-	RTCPRE_0    CFGR = 0x01 << 16
-	RTCPRE_1    CFGR = 0x02 << 16
-	RTCPRE_2    CFGR = 0x04 << 16
-	RTCPRE_3    CFGR = 0x08 << 16
-	RTCPRE_4    CFGR = 0x10 << 16
 	MCO1        CFGR = 0x03 << 21 //+
-	MCO1_0      CFGR = 0x01 << 21
-	MCO1_1      CFGR = 0x02 << 21
 	I2SSRC      CFGR = 0x01 << 23 //+
 	MCO1PRE     CFGR = 0x07 << 24 //+
-	MCO1PRE_0   CFGR = 0x01 << 24
-	MCO1PRE_1   CFGR = 0x02 << 24
-	MCO1PRE_2   CFGR = 0x04 << 24
 	MCO2PRE     CFGR = 0x07 << 27 //+
-	MCO2PRE_0   CFGR = 0x01 << 27
-	MCO2PRE_1   CFGR = 0x02 << 27
-	MCO2PRE_2   CFGR = 0x04 << 27
 	MCO2        CFGR = 0x03 << 30 //+
-	MCO2_0      CFGR = 0x01 << 30
-	MCO2_1      CFGR = 0x02 << 30
 )
 
 const (
@@ -795,17 +732,13 @@ const (
 )
 
 const (
-	LSEON    BDCR = 0x01 << 0 //+
-	LSERDY   BDCR = 0x01 << 1 //+
-	LSEBYP   BDCR = 0x01 << 2 //+
-	LSEDRV   BDCR = 0x03 << 3 //+
-	LSEDRV_0 BDCR = 0x01 << 3
-	LSEDRV_1 BDCR = 0x02 << 3
-	RTCSEL   BDCR = 0x03 << 8 //+
-	RTCSEL_0 BDCR = 0x01 << 8
-	RTCSEL_1 BDCR = 0x02 << 8
-	RTCEN    BDCR = 0x01 << 15 //+
-	BDRST    BDCR = 0x01 << 16 //+
+	LSEON  BDCR = 0x01 << 0  //+
+	LSERDY BDCR = 0x01 << 1  //+
+	LSEBYP BDCR = 0x01 << 2  //+
+	LSEDRV BDCR = 0x03 << 3  //+
+	RTCSEL BDCR = 0x03 << 8  //+
+	RTCEN  BDCR = 0x01 << 15 //+
+	BDRST  BDCR = 0x01 << 16 //+
 )
 
 const (
@@ -859,28 +792,10 @@ const (
 )
 
 const (
-	PLLI2SN   PLLI2SCFGR = 0x1FF << 6 //+
-	PLLI2SN_0 PLLI2SCFGR = 0x01 << 6
-	PLLI2SN_1 PLLI2SCFGR = 0x02 << 6
-	PLLI2SN_2 PLLI2SCFGR = 0x04 << 6
-	PLLI2SN_3 PLLI2SCFGR = 0x08 << 6
-	PLLI2SN_4 PLLI2SCFGR = 0x10 << 6
-	PLLI2SN_5 PLLI2SCFGR = 0x20 << 6
-	PLLI2SN_6 PLLI2SCFGR = 0x40 << 6
-	PLLI2SN_7 PLLI2SCFGR = 0x80 << 6
-	PLLI2SN_8 PLLI2SCFGR = 0x100 << 6
-	PLLI2SP   PLLI2SCFGR = 0x03 << 16 //+
-	PLLI2SP_0 PLLI2SCFGR = 0x01 << 16
-	PLLI2SP_1 PLLI2SCFGR = 0x02 << 16
-	PLLI2SQ   PLLI2SCFGR = 0x0F << 24 //+
-	PLLI2SQ_0 PLLI2SCFGR = 0x01 << 24
-	PLLI2SQ_1 PLLI2SCFGR = 0x02 << 24
-	PLLI2SQ_2 PLLI2SCFGR = 0x04 << 24
-	PLLI2SQ_3 PLLI2SCFGR = 0x08 << 24
-	PLLI2SR   PLLI2SCFGR = 0x07 << 28 //+
-	PLLI2SR_0 PLLI2SCFGR = 0x01 << 28
-	PLLI2SR_1 PLLI2SCFGR = 0x02 << 28
-	PLLI2SR_2 PLLI2SCFGR = 0x04 << 28
+	PLLI2SN PLLI2SCFGR = 0x1FF << 6 //+
+	PLLI2SP PLLI2SCFGR = 0x03 << 16 //+
+	PLLI2SQ PLLI2SCFGR = 0x0F << 24 //+
+	PLLI2SR PLLI2SCFGR = 0x07 << 28 //+
 )
 
 const (
@@ -891,28 +806,10 @@ const (
 )
 
 const (
-	PLLSAIN   PLLSAICFGR = 0x1FF << 6 //+
-	PLLSAIN_0 PLLSAICFGR = 0x01 << 6
-	PLLSAIN_1 PLLSAICFGR = 0x02 << 6
-	PLLSAIN_2 PLLSAICFGR = 0x04 << 6
-	PLLSAIN_3 PLLSAICFGR = 0x08 << 6
-	PLLSAIN_4 PLLSAICFGR = 0x10 << 6
-	PLLSAIN_5 PLLSAICFGR = 0x20 << 6
-	PLLSAIN_6 PLLSAICFGR = 0x40 << 6
-	PLLSAIN_7 PLLSAICFGR = 0x80 << 6
-	PLLSAIN_8 PLLSAICFGR = 0x100 << 6
-	PLLSAIP   PLLSAICFGR = 0x03 << 16 //+
-	PLLSAIP_0 PLLSAICFGR = 0x01 << 16
-	PLLSAIP_1 PLLSAICFGR = 0x02 << 16
-	PLLSAIQ   PLLSAICFGR = 0x0F << 24 //+
-	PLLSAIQ_0 PLLSAICFGR = 0x01 << 24
-	PLLSAIQ_1 PLLSAICFGR = 0x02 << 24
-	PLLSAIQ_2 PLLSAICFGR = 0x04 << 24
-	PLLSAIQ_3 PLLSAICFGR = 0x08 << 24
-	PLLSAIR   PLLSAICFGR = 0x07 << 28 //+
-	PLLSAIR_0 PLLSAICFGR = 0x01 << 28
-	PLLSAIR_1 PLLSAICFGR = 0x02 << 28
-	PLLSAIR_2 PLLSAICFGR = 0x04 << 28
+	PLLSAIN PLLSAICFGR = 0x1FF << 6 //+
+	PLLSAIP PLLSAICFGR = 0x03 << 16 //+
+	PLLSAIQ PLLSAICFGR = 0x0F << 24 //+
+	PLLSAIR PLLSAICFGR = 0x07 << 28 //+
 )
 
 const (
@@ -923,28 +820,12 @@ const (
 )
 
 const (
-	PLLI2SDIVQ   DCKCFGR1 = 0x1F << 0 //+
-	PLLI2SDIVQ_0 DCKCFGR1 = 0x01 << 0
-	PLLI2SDIVQ_1 DCKCFGR1 = 0x02 << 0
-	PLLI2SDIVQ_2 DCKCFGR1 = 0x04 << 0
-	PLLI2SDIVQ_3 DCKCFGR1 = 0x08 << 0
-	PLLI2SDIVQ_4 DCKCFGR1 = 0x10 << 0
-	PLLSAIDIVQ   DCKCFGR1 = 0x1F << 8 //+
-	PLLSAIDIVQ_0 DCKCFGR1 = 0x01 << 8
-	PLLSAIDIVQ_1 DCKCFGR1 = 0x02 << 8
-	PLLSAIDIVQ_2 DCKCFGR1 = 0x04 << 8
-	PLLSAIDIVQ_3 DCKCFGR1 = 0x08 << 8
-	PLLSAIDIVQ_4 DCKCFGR1 = 0x10 << 8
-	PLLSAIDIVR   DCKCFGR1 = 0x03 << 16 //+
-	PLLSAIDIVR_0 DCKCFGR1 = 0x01 << 16
-	PLLSAIDIVR_1 DCKCFGR1 = 0x02 << 16
-	SAI1SEL      DCKCFGR1 = 0x03 << 20 //+
-	SAI1SEL_0    DCKCFGR1 = 0x01 << 20
-	SAI1SEL_1    DCKCFGR1 = 0x02 << 20
-	SAI2SEL      DCKCFGR1 = 0x03 << 22 //+
-	SAI2SEL_0    DCKCFGR1 = 0x01 << 22
-	SAI2SEL_1    DCKCFGR1 = 0x02 << 22
-	TIMPRE       DCKCFGR1 = 0x01 << 24 //+
+	PLLI2SDIVQ DCKCFGR1 = 0x1F << 0  //+
+	PLLSAIDIVQ DCKCFGR1 = 0x1F << 8  //+
+	PLLSAIDIVR DCKCFGR1 = 0x03 << 16 //+
+	SAI1SEL    DCKCFGR1 = 0x03 << 20 //+
+	SAI2SEL    DCKCFGR1 = 0x03 << 22 //+
+	TIMPRE     DCKCFGR1 = 0x01 << 24 //+
 )
 
 const (
@@ -957,48 +838,22 @@ const (
 )
 
 const (
-	USART1SEL   DCKCFGR2 = 0x03 << 0 //+
-	USART1SEL_0 DCKCFGR2 = 0x01 << 0
-	USART1SEL_1 DCKCFGR2 = 0x02 << 0
-	USART2SEL   DCKCFGR2 = 0x03 << 2 //+
-	USART2SEL_0 DCKCFGR2 = 0x01 << 2
-	USART2SEL_1 DCKCFGR2 = 0x02 << 2
-	USART3SEL   DCKCFGR2 = 0x03 << 4 //+
-	USART3SEL_0 DCKCFGR2 = 0x01 << 4
-	USART3SEL_1 DCKCFGR2 = 0x02 << 4
-	UART4SEL    DCKCFGR2 = 0x03 << 6 //+
-	UART4SEL_0  DCKCFGR2 = 0x01 << 6
-	UART4SEL_1  DCKCFGR2 = 0x02 << 6
-	UART5SEL    DCKCFGR2 = 0x03 << 8 //+
-	UART5SEL_0  DCKCFGR2 = 0x01 << 8
-	UART5SEL_1  DCKCFGR2 = 0x02 << 8
-	USART6SEL   DCKCFGR2 = 0x03 << 10 //+
-	USART6SEL_0 DCKCFGR2 = 0x01 << 10
-	USART6SEL_1 DCKCFGR2 = 0x02 << 10
-	UART7SEL    DCKCFGR2 = 0x03 << 12 //+
-	UART7SEL_0  DCKCFGR2 = 0x01 << 12
-	UART7SEL_1  DCKCFGR2 = 0x02 << 12
-	UART8SEL    DCKCFGR2 = 0x03 << 14 //+
-	UART8SEL_0  DCKCFGR2 = 0x01 << 14
-	UART8SEL_1  DCKCFGR2 = 0x02 << 14
-	I2C1SEL     DCKCFGR2 = 0x03 << 16 //+
-	I2C1SEL_0   DCKCFGR2 = 0x01 << 16
-	I2C1SEL_1   DCKCFGR2 = 0x02 << 16
-	I2C2SEL     DCKCFGR2 = 0x03 << 18 //+
-	I2C2SEL_0   DCKCFGR2 = 0x01 << 18
-	I2C2SEL_1   DCKCFGR2 = 0x02 << 18
-	I2C3SEL     DCKCFGR2 = 0x03 << 20 //+
-	I2C3SEL_0   DCKCFGR2 = 0x01 << 20
-	I2C3SEL_1   DCKCFGR2 = 0x02 << 20
-	I2C4SEL     DCKCFGR2 = 0x03 << 22 //+
-	I2C4SEL_0   DCKCFGR2 = 0x01 << 22
-	I2C4SEL_1   DCKCFGR2 = 0x02 << 22
-	LPTIM1SEL   DCKCFGR2 = 0x03 << 24 //+
-	LPTIM1SEL_0 DCKCFGR2 = 0x01 << 24
-	LPTIM1SEL_1 DCKCFGR2 = 0x02 << 24
-	CECSEL      DCKCFGR2 = 0x01 << 26 //+
-	CK48MSEL    DCKCFGR2 = 0x01 << 27 //+
-	SDMMC1SEL   DCKCFGR2 = 0x01 << 28 //+
+	USART1SEL DCKCFGR2 = 0x03 << 0  //+
+	USART2SEL DCKCFGR2 = 0x03 << 2  //+
+	USART3SEL DCKCFGR2 = 0x03 << 4  //+
+	UART4SEL  DCKCFGR2 = 0x03 << 6  //+
+	UART5SEL  DCKCFGR2 = 0x03 << 8  //+
+	USART6SEL DCKCFGR2 = 0x03 << 10 //+
+	UART7SEL  DCKCFGR2 = 0x03 << 12 //+
+	UART8SEL  DCKCFGR2 = 0x03 << 14 //+
+	I2C1SEL   DCKCFGR2 = 0x03 << 16 //+
+	I2C2SEL   DCKCFGR2 = 0x03 << 18 //+
+	I2C3SEL   DCKCFGR2 = 0x03 << 20 //+
+	I2C4SEL   DCKCFGR2 = 0x03 << 22 //+
+	LPTIM1SEL DCKCFGR2 = 0x03 << 24 //+
+	CECSEL    DCKCFGR2 = 0x01 << 26 //+
+	CK48MSEL  DCKCFGR2 = 0x01 << 27 //+
+	SDMMC1SEL DCKCFGR2 = 0x01 << 28 //+
 )
 
 const (

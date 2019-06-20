@@ -88,9 +88,6 @@ const (
 	APCS      MACCR = 0x01 << 7  //+ Automatic Pad/CRC stripping.
 	BL        MACCR = 0x03 << 5  //+ Back-off limit: random integer number (r) of slot time delays before rescheduling.
 	BL_10     MACCR = 0x00 << 5  //  k = min (n, 10).
-	BL_8      MACCR = 0x01 << 5  //  k = min (n, 8).
-	BL_4      MACCR = 0x02 << 5  //  k = min (n, 4).
-	BL_1      MACCR = 0x03 << 5  //  k = min (n, 1).
 	DC        MACCR = 0x01 << 4  //+ Defferal check.
 	TE        MACCR = 0x01 << 3  //+ Transmitter enable.
 	RE        MACCR = 0x01 << 2  //+ Receiver enable.
@@ -298,12 +295,8 @@ const (
 	AE             MACA1HR = 0x01 << 31  //+ Address enable.
 	SA             MACA1HR = 0x01 << 30  //+ Source address.
 	MBC            MACA1HR = 0x3F << 24  //+ Mask byte control: bits to mask for comparison of the MAC Address bytes.
-	MBC_HBits15_8  MACA1HR = 0x20 << 24  //  Mask MAC Address high reg bits [15:8].
-	MBC_HBits7_0   MACA1HR = 0x10 << 24  //  Mask MAC Address high reg bits [7:0].
 	MBC_LBits31_24 MACA1HR = 0x08 << 24  //  Mask MAC Address low reg bits [31:24].
 	MBC_LBits23_16 MACA1HR = 0x04 << 24  //  Mask MAC Address low reg bits [23:16].
-	MBC_LBits15_8  MACA1HR = 0x02 << 24  //  Mask MAC Address low reg bits [15:8].
-	MBC_LBits7_0   MACA1HR = 0x01 << 24  //  Mask MAC Address low reg bits [7:0].
 	MACA1H         MACA1HR = 0xFFFF << 0 //+ MAC address1 high.
 )
 
@@ -326,12 +319,8 @@ const (
 	AE             MACA2HR = 0x01 << 31  //+ Address enable.
 	SA             MACA2HR = 0x01 << 30  //+ Source address.
 	MBC            MACA2HR = 0x3F << 24  //+ Mask byte control.
-	MBC_HBits15_8  MACA2HR = 0x20 << 24  //  Mask MAC Address high reg bits [15:8].
-	MBC_HBits7_0   MACA2HR = 0x10 << 24  //  Mask MAC Address high reg bits [7:0].
 	MBC_LBits31_24 MACA2HR = 0x08 << 24  //  Mask MAC Address low reg bits [31:24].
 	MBC_LBits23_16 MACA2HR = 0x04 << 24  //  Mask MAC Address low reg bits [23:16].
-	MBC_LBits15_8  MACA2HR = 0x02 << 24  //  Mask MAC Address low reg bits [15:8].
-	MBC_LBits7_0   MACA2HR = 0x01 << 24  //  Mask MAC Address low reg bits [70].
 	MACA2H         MACA2HR = 0xFFFF << 0 //+ MAC address1 high.
 )
 
@@ -354,12 +343,8 @@ const (
 	AE             MACA3HR = 0x01 << 31  //+ Address enable.
 	SA             MACA3HR = 0x01 << 30  //+ Source address.
 	MBC            MACA3HR = 0x3F << 24  //+ Mask byte control.
-	MBC_HBits15_8  MACA3HR = 0x20 << 24  //  Mask MAC Address high reg bits [15:8].
-	MBC_HBits7_0   MACA3HR = 0x10 << 24  //  Mask MAC Address high reg bits [7:0].
 	MBC_LBits31_24 MACA3HR = 0x08 << 24  //  Mask MAC Address low reg bits [31:24].
 	MBC_LBits23_16 MACA3HR = 0x04 << 24  //  Mask MAC Address low reg bits [23:16].
-	MBC_LBits15_8  MACA3HR = 0x02 << 24  //  Mask MAC Address low reg bits [15:8].
-	MBC_LBits7_0   MACA3HR = 0x01 << 24  //  Mask MAC Address low reg bits [70].
 	MACA3H         MACA3HR = 0xFFFF << 0 //+ MAC address3 high.
 )
 
@@ -625,10 +610,6 @@ const (
 	RDP_4xPBL_128Beat DMABMR = 0xA0 << 17   //  maximum number of beats to be transferred in one RxDMA transaction is 128.
 	FB                DMABMR = 0x01 << 16   //+ Fixed Burst.
 	RTPR              DMABMR = 0x03 << 14   //+ Rx Tx priority ratio.
-	RTPR_1_1          DMABMR = 0x00 << 14   //  Rx Tx priority ratio.
-	RTPR_2_1          DMABMR = 0x01 << 14   //  Rx Tx priority ratio.
-	RTPR_3_1          DMABMR = 0x02 << 14   //  Rx Tx priority ratio.
-	RTPR_4_1          DMABMR = 0x03 << 14   //  Rx Tx priority ratio.
 	PBL               DMABMR = 0x3F << 8    //+ Programmable burst length.
 	PBL_1Beat         DMABMR = 0x01 << 8    //  maximum number of beats to be transferred in one TxDMA (or both) transaction is 1.
 	PBL_2Beat         DMABMR = 0x02 << 8    //  maximum number of beats to be transferred in one TxDMA (or both) transaction is 2.

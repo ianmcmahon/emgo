@@ -18,9 +18,6 @@ const (
 	CSBF     CR1 = 0x01 << 3  //+ Clear Standby Flag.
 	PVDE     CR1 = 0x01 << 4  //+ Power Voltage Detector Enable.
 	PLS      CR1 = 0x07 << 5  //+ PLS[2:0] bits (PVD Level Selection).
-	PLS_0    CR1 = 0x01 << 5  //  Bit 0.
-	PLS_1    CR1 = 0x02 << 5  //  Bit 1.
-	PLS_2    CR1 = 0x04 << 5  //  Bit 2.
 	PLS_LEV0 CR1 = 0x00 << 5  //  PVD level 0.
 	PLS_LEV1 CR1 = 0x01 << 5  //  PVD level 1.
 	PLS_LEV2 CR1 = 0x02 << 5  //  PVD level 2.
@@ -35,13 +32,9 @@ const (
 	MRUDS    CR1 = 0x01 << 11 //+ Main regulator in deepsleep under-drive mode.
 	ADCDC1   CR1 = 0x01 << 13 //+ Refer to AN4073 on how to use this bit.
 	VOS      CR1 = 0x03 << 14 //+ VOS[1:0] bits (Regulator voltage scaling output selection).
-	VOS_0    CR1 = 0x01 << 14 //  Bit 0.
-	VOS_1    CR1 = 0x02 << 14 //  Bit 1.
 	ODEN     CR1 = 0x01 << 16 //+ Over Drive enable.
 	ODSWEN   CR1 = 0x01 << 17 //+ Over Drive switch enabled.
 	UDEN     CR1 = 0x03 << 18 //+ Under Drive enable in stop mode.
-	UDEN_0   CR1 = 0x01 << 18 //  Bit 0.
-	UDEN_1   CR1 = 0x02 << 18 //  Bit 1.
 )
 
 const (

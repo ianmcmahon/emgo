@@ -18,8 +18,6 @@ const (
 	SD0PID_SEVNFRM DOEPCTL = 0x01 << 28 //+ Set DATA0 PID.
 	SODDFRM        DOEPCTL = 0x01 << 29 //+ Set odd frame.
 	EPTYP          DOEPCTL = 0x03 << 18 //+ Endpoint type.
-	EPTYP_0        DOEPCTL = 0x01 << 18 //  Bit 0.
-	EPTYP_1        DOEPCTL = 0x02 << 18 //  Bit 1.
 	SNPM           DOEPCTL = 0x01 << 20 //+ Snoop mode.
 	STALL          DOEPCTL = 0x01 << 21 //+ STALL handshake.
 	CNAK           DOEPCTL = 0x01 << 26 //+ Clear NAK.
@@ -64,11 +62,9 @@ const (
 )
 
 const (
-	XFRSIZ    DOEPTSIZ = 0x7FFFF << 0 //+ Transfer size.
-	PKTCNT    DOEPTSIZ = 0x3FF << 19  //+ Packet count.
-	STUPCNT   DOEPTSIZ = 0x03 << 29   //+ SETUP packet count.
-	STUPCNT_0 DOEPTSIZ = 0x01 << 29   //  Bit 0.
-	STUPCNT_1 DOEPTSIZ = 0x02 << 29   //  Bit 1.
+	XFRSIZ  DOEPTSIZ = 0x7FFFF << 0 //+ Transfer size.
+	PKTCNT  DOEPTSIZ = 0x3FF << 19  //+ Packet count.
+	STUPCNT DOEPTSIZ = 0x03 << 29   //+ SETUP packet count.
 )
 
 const (

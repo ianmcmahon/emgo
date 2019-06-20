@@ -66,16 +66,6 @@ const (
 )
 
 const (
-	OT_0  OTYPER = 0x01 << 0  //+
-	OT_1  OTYPER = 0x01 << 1  //+
-	OT_2  OTYPER = 0x01 << 2  //+
-	OT_3  OTYPER = 0x01 << 3  //+
-	OT_4  OTYPER = 0x01 << 4  //+
-	OT_5  OTYPER = 0x01 << 5  //+
-	OT_6  OTYPER = 0x01 << 6  //+
-	OT_7  OTYPER = 0x01 << 7  //+
-	OT_8  OTYPER = 0x01 << 8  //+
-	OT_9  OTYPER = 0x01 << 9  //+
 	OT_10 OTYPER = 0x01 << 10 //+
 	OT_11 OTYPER = 0x01 << 11 //+
 	OT_12 OTYPER = 0x01 << 12 //+
@@ -85,16 +75,6 @@ const (
 )
 
 const (
-	OT_0n  = 0
-	OT_1n  = 1
-	OT_2n  = 2
-	OT_3n  = 3
-	OT_4n  = 4
-	OT_5n  = 5
-	OT_6n  = 6
-	OT_7n  = 7
-	OT_8n  = 8
-	OT_9n  = 9
 	OT_10n = 10
 	OT_11n = 11
 	OT_12n = 12
@@ -142,16 +122,6 @@ const (
 )
 
 const (
-	V0  IDR = 0x01 << 0  //+
-	V1  IDR = 0x01 << 1  //+
-	V2  IDR = 0x01 << 2  //+
-	V3  IDR = 0x01 << 3  //+
-	V4  IDR = 0x01 << 4  //+
-	V5  IDR = 0x01 << 5  //+
-	V6  IDR = 0x01 << 6  //+
-	V7  IDR = 0x01 << 7  //+
-	V8  IDR = 0x01 << 8  //+
-	V9  IDR = 0x01 << 9  //+
 	V10 IDR = 0x01 << 10 //+
 	V11 IDR = 0x01 << 11 //+
 	V12 IDR = 0x01 << 12 //+
@@ -161,16 +131,6 @@ const (
 )
 
 const (
-	V0n  = 0
-	V1n  = 1
-	V2n  = 2
-	V3n  = 3
-	V4n  = 4
-	V5n  = 5
-	V6n  = 6
-	V7n  = 7
-	V8n  = 8
-	V9n  = 9
 	V10n = 10
 	V11n = 11
 	V12n = 12
@@ -180,16 +140,6 @@ const (
 )
 
 const (
-	V0  ODR = 0x01 << 0  //+
-	V1  ODR = 0x01 << 1  //+
-	V2  ODR = 0x01 << 2  //+
-	V3  ODR = 0x01 << 3  //+
-	V4  ODR = 0x01 << 4  //+
-	V5  ODR = 0x01 << 5  //+
-	V6  ODR = 0x01 << 6  //+
-	V7  ODR = 0x01 << 7  //+
-	V8  ODR = 0x01 << 8  //+
-	V9  ODR = 0x01 << 9  //+
 	V10 ODR = 0x01 << 10 //+
 	V11 ODR = 0x01 << 11 //+
 	V12 ODR = 0x01 << 12 //+
@@ -199,16 +149,6 @@ const (
 )
 
 const (
-	V0n  = 0
-	V1n  = 1
-	V2n  = 2
-	V3n  = 3
-	V4n  = 4
-	V5n  = 5
-	V6n  = 6
-	V7n  = 7
-	V8n  = 8
-	V9n  = 9
 	V10n = 10
 	V11n = 11
 	V12n = 12
@@ -218,32 +158,12 @@ const (
 )
 
 const (
-	BS_0  BSRR = 0x01 << 0  //+
-	BS_1  BSRR = 0x01 << 1  //+
-	BS_2  BSRR = 0x01 << 2  //+
-	BS_3  BSRR = 0x01 << 3  //+
-	BS_4  BSRR = 0x01 << 4  //+
-	BS_5  BSRR = 0x01 << 5  //+
-	BS_6  BSRR = 0x01 << 6  //+
-	BS_7  BSRR = 0x01 << 7  //+
-	BS_8  BSRR = 0x01 << 8  //+
-	BS_9  BSRR = 0x01 << 9  //+
 	BS_10 BSRR = 0x01 << 10 //+
 	BS_11 BSRR = 0x01 << 11 //+
 	BS_12 BSRR = 0x01 << 12 //+
 	BS_13 BSRR = 0x01 << 13 //+
 	BS_14 BSRR = 0x01 << 14 //+
 	BS_15 BSRR = 0x01 << 15 //+
-	BR_0  BSRR = 0x01 << 16 //+
-	BR_1  BSRR = 0x01 << 17 //+
-	BR_2  BSRR = 0x01 << 18 //+
-	BR_3  BSRR = 0x01 << 19 //+
-	BR_4  BSRR = 0x01 << 20 //+
-	BR_5  BSRR = 0x01 << 21 //+
-	BR_6  BSRR = 0x01 << 22 //+
-	BR_7  BSRR = 0x01 << 23 //+
-	BR_8  BSRR = 0x01 << 24 //+
-	BR_9  BSRR = 0x01 << 25 //+
 	BR_10 BSRR = 0x01 << 26 //+
 	BR_11 BSRR = 0x01 << 27 //+
 	BR_12 BSRR = 0x01 << 28 //+
@@ -253,32 +173,12 @@ const (
 )
 
 const (
-	BS_0n  = 0
-	BS_1n  = 1
-	BS_2n  = 2
-	BS_3n  = 3
-	BS_4n  = 4
-	BS_5n  = 5
-	BS_6n  = 6
-	BS_7n  = 7
-	BS_8n  = 8
-	BS_9n  = 9
 	BS_10n = 10
 	BS_11n = 11
 	BS_12n = 12
 	BS_13n = 13
 	BS_14n = 14
 	BS_15n = 15
-	BR_0n  = 16
-	BR_1n  = 17
-	BR_2n  = 18
-	BR_3n  = 19
-	BR_4n  = 20
-	BR_5n  = 21
-	BR_6n  = 22
-	BR_7n  = 23
-	BR_8n  = 24
-	BR_9n  = 25
 	BR_10n = 26
 	BR_11n = 27
 	BR_12n = 28
@@ -328,16 +228,6 @@ const (
 )
 
 const (
-	BR_0  BRR = 0x01 << 0  //+
-	BR_1  BRR = 0x01 << 1  //+
-	BR_2  BRR = 0x01 << 2  //+
-	BR_3  BRR = 0x01 << 3  //+
-	BR_4  BRR = 0x01 << 4  //+
-	BR_5  BRR = 0x01 << 5  //+
-	BR_6  BRR = 0x01 << 6  //+
-	BR_7  BRR = 0x01 << 7  //+
-	BR_8  BRR = 0x01 << 8  //+
-	BR_9  BRR = 0x01 << 9  //+
 	BR_10 BRR = 0x01 << 10 //+
 	BR_11 BRR = 0x01 << 11 //+
 	BR_12 BRR = 0x01 << 12 //+
@@ -347,16 +237,6 @@ const (
 )
 
 const (
-	BR_0n  = 0
-	BR_1n  = 1
-	BR_2n  = 2
-	BR_3n  = 3
-	BR_4n  = 4
-	BR_5n  = 5
-	BR_6n  = 6
-	BR_7n  = 7
-	BR_8n  = 8
-	BR_9n  = 9
 	BR_10n = 10
 	BR_11n = 11
 	BR_12n = 12

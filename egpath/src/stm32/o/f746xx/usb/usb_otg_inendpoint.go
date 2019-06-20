@@ -18,14 +18,8 @@ const (
 	EONUM_DPID     DIEPCTL = 0x01 << 16 //+ Even/odd frame.
 	NAKSTS         DIEPCTL = 0x01 << 17 //+ NAK status.
 	EPTYP          DIEPCTL = 0x03 << 18 //+ Endpoint type.
-	EPTYP_0        DIEPCTL = 0x01 << 18 //  Bit 0.
-	EPTYP_1        DIEPCTL = 0x02 << 18 //  Bit 1.
 	STALL          DIEPCTL = 0x01 << 21 //+ STALL handshake.
 	TXFNUM         DIEPCTL = 0x0F << 22 //+ TxFIFO number.
-	TXFNUM_0       DIEPCTL = 0x01 << 22 //  Bit 0.
-	TXFNUM_1       DIEPCTL = 0x02 << 22 //  Bit 1.
-	TXFNUM_2       DIEPCTL = 0x04 << 22 //  Bit 2.
-	TXFNUM_3       DIEPCTL = 0x08 << 22 //  Bit 3.
 	CNAK           DIEPCTL = 0x01 << 26 //+ Clear NAK.
 	SNAK           DIEPCTL = 0x01 << 27 //+ Set NAK.
 	SD0PID_SEVNFRM DIEPCTL = 0x01 << 28 //+ Set DATA0 PID.

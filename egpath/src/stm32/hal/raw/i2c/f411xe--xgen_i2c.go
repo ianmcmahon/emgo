@@ -199,16 +199,44 @@ type RMOAR1 struct{ mmio.UM32 }
 func (rm RMOAR1) Load() OAR1   { return OAR1(rm.UM32.Load()) }
 func (rm RMOAR1) Store(b OAR1) { rm.UM32.Store(uint32(b)) }
 
-func (p *I2C_Periph) ADD1_7() RMOAR1 {
-	return RMOAR1{mmio.UM32{&p.OAR1.U32, uint32(ADD1_7)}}
-}
-
-func (p *I2C_Periph) ADD8_9() RMOAR1 {
-	return RMOAR1{mmio.UM32{&p.OAR1.U32, uint32(ADD8_9)}}
-}
-
 func (p *I2C_Periph) ADD0() RMOAR1 {
 	return RMOAR1{mmio.UM32{&p.OAR1.U32, uint32(ADD0)}}
+}
+
+func (p *I2C_Periph) ADD1() RMOAR1 {
+	return RMOAR1{mmio.UM32{&p.OAR1.U32, uint32(ADD1)}}
+}
+
+func (p *I2C_Periph) ADD2() RMOAR1 {
+	return RMOAR1{mmio.UM32{&p.OAR1.U32, uint32(ADD2)}}
+}
+
+func (p *I2C_Periph) ADD3() RMOAR1 {
+	return RMOAR1{mmio.UM32{&p.OAR1.U32, uint32(ADD3)}}
+}
+
+func (p *I2C_Periph) ADD4() RMOAR1 {
+	return RMOAR1{mmio.UM32{&p.OAR1.U32, uint32(ADD4)}}
+}
+
+func (p *I2C_Periph) ADD5() RMOAR1 {
+	return RMOAR1{mmio.UM32{&p.OAR1.U32, uint32(ADD5)}}
+}
+
+func (p *I2C_Periph) ADD6() RMOAR1 {
+	return RMOAR1{mmio.UM32{&p.OAR1.U32, uint32(ADD6)}}
+}
+
+func (p *I2C_Periph) ADD7() RMOAR1 {
+	return RMOAR1{mmio.UM32{&p.OAR1.U32, uint32(ADD7)}}
+}
+
+func (p *I2C_Periph) ADD8() RMOAR1 {
+	return RMOAR1{mmio.UM32{&p.OAR1.U32, uint32(ADD8)}}
+}
+
+func (p *I2C_Periph) ADD9() RMOAR1 {
+	return RMOAR1{mmio.UM32{&p.OAR1.U32, uint32(ADD9)}}
 }
 
 func (p *I2C_Periph) ADDMODE() RMOAR1 {

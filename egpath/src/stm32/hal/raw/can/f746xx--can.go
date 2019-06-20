@@ -183,15 +183,12 @@ const (
 )
 
 const (
-	EWGF  ESR = 0x01 << 0  //+ Error Warning Flag.
-	EPVF  ESR = 0x01 << 1  //+ Error Passive Flag.
-	BOFF  ESR = 0x01 << 2  //+ Bus-Off Flag.
-	LEC   ESR = 0x07 << 4  //+ LEC[2:0] bits (Last Error Code).
-	LEC_0 ESR = 0x01 << 4  //  Bit 0.
-	LEC_1 ESR = 0x02 << 4  //  Bit 1.
-	LEC_2 ESR = 0x04 << 4  //  Bit 2.
-	TEC   ESR = 0xFF << 16 //+ Least significant byte of the 9-bit Transmit Error Counter.
-	REC   ESR = 0xFF << 24 //+ Receive Error Counter.
+	EWGF ESR = 0x01 << 0  //+ Error Warning Flag.
+	EPVF ESR = 0x01 << 1  //+ Error Passive Flag.
+	BOFF ESR = 0x01 << 2  //+ Bus-Off Flag.
+	LEC  ESR = 0x07 << 4  //+ LEC[2:0] bits (Last Error Code).
+	TEC  ESR = 0xFF << 16 //+ Least significant byte of the 9-bit Transmit Error Counter.
+	REC  ESR = 0xFF << 24 //+ Receive Error Counter.
 )
 
 const (
@@ -204,21 +201,12 @@ const (
 )
 
 const (
-	BRP   BTR = 0x3FF << 0 //+ Baud Rate Prescaler.
-	TS1   BTR = 0x0F << 16 //+ Time Segment 1.
-	TS1_0 BTR = 0x01 << 16 //  Bit 0.
-	TS1_1 BTR = 0x02 << 16 //  Bit 1.
-	TS1_2 BTR = 0x04 << 16 //  Bit 2.
-	TS1_3 BTR = 0x08 << 16 //  Bit 3.
-	TS2   BTR = 0x07 << 20 //+ Time Segment 2.
-	TS2_0 BTR = 0x01 << 20 //  Bit 0.
-	TS2_1 BTR = 0x02 << 20 //  Bit 1.
-	TS2_2 BTR = 0x04 << 20 //  Bit 2.
-	SJW   BTR = 0x03 << 24 //+ Resynchronization Jump Width.
-	SJW_0 BTR = 0x01 << 24 //  Bit 0.
-	SJW_1 BTR = 0x02 << 24 //  Bit 1.
-	LBKM  BTR = 0x01 << 30 //+ Loop Back Mode (Debug).
-	SILM  BTR = 0x01 << 31 //+ Silent Mode.
+	BRP  BTR = 0x3FF << 0 //+ Baud Rate Prescaler.
+	TS1  BTR = 0x0F << 16 //+ Time Segment 1.
+	TS2  BTR = 0x07 << 20 //+ Time Segment 2.
+	SJW  BTR = 0x03 << 24 //+ Resynchronization Jump Width.
+	LBKM BTR = 0x01 << 30 //+ Loop Back Mode (Debug).
+	SILM BTR = 0x01 << 31 //+ Silent Mode.
 )
 
 const (

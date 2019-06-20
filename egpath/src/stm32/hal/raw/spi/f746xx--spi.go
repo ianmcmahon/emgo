@@ -29,9 +29,6 @@ const (
 	CPOL     CR1 = 0x01 << 1  //+ Clock Polarity.
 	MSTR     CR1 = 0x01 << 2  //+ Master Selection.
 	BR       CR1 = 0x07 << 3  //+ BR[2:0] bits (Baud Rate Control).
-	BR_0     CR1 = 0x01 << 3  //  Bit 0.
-	BR_1     CR1 = 0x02 << 3  //  Bit 1.
-	BR_2     CR1 = 0x04 << 3  //  Bit 2.
 	SPE      CR1 = 0x01 << 6  //+ SPI Enable.
 	LSBFIRST CR1 = 0x01 << 7  //+ Frame Format.
 	SSI      CR1 = 0x01 << 8  //+ Internal slave select.
@@ -71,10 +68,6 @@ const (
 	RXNEIE  CR2 = 0x01 << 6  //+ RX buffer Not Empty Interrupt Enable.
 	TXEIE   CR2 = 0x01 << 7  //+ Tx buffer Empty Interrupt Enable.
 	DS      CR2 = 0x0F << 8  //+ DS[3:0] Data Size.
-	DS_0    CR2 = 0x01 << 8  //  Bit 0.
-	DS_1    CR2 = 0x02 << 8  //  Bit 1.
-	DS_2    CR2 = 0x04 << 8  //  Bit 2.
-	DS_3    CR2 = 0x08 << 8  //  Bit 3.
 	FRXTH   CR2 = 0x01 << 12 //+ FIFO reception Threshold.
 	LDMARX  CR2 = 0x01 << 13 //+ Last DMA transfer for reception.
 	LDMATX  CR2 = 0x01 << 14 //+ Last DMA transfer for transmission.
@@ -96,21 +89,17 @@ const (
 )
 
 const (
-	RXNE    SR = 0x01 << 0  //+ Receive buffer Not Empty.
-	TXE     SR = 0x01 << 1  //+ Transmit buffer Empty.
-	CHSIDE  SR = 0x01 << 2  //+ Channel side.
-	UDR     SR = 0x01 << 3  //+ Underrun flag.
-	CRCERR  SR = 0x01 << 4  //+ CRC Error flag.
-	MODF    SR = 0x01 << 5  //+ Mode fault.
-	OVR     SR = 0x01 << 6  //+ Overrun flag.
-	BSY     SR = 0x01 << 7  //+ Busy flag.
-	FRE     SR = 0x01 << 8  //+ TI frame format error.
-	FRLVL   SR = 0x03 << 9  //+ FIFO Reception Level.
-	FRLVL_0 SR = 0x01 << 9  //  Bit 0.
-	FRLVL_1 SR = 0x02 << 9  //  Bit 1.
-	FTLVL   SR = 0x03 << 11 //+ FIFO Transmission Level.
-	FTLVL_0 SR = 0x01 << 11 //  Bit 0.
-	FTLVL_1 SR = 0x02 << 11 //  Bit 1.
+	RXNE   SR = 0x01 << 0  //+ Receive buffer Not Empty.
+	TXE    SR = 0x01 << 1  //+ Transmit buffer Empty.
+	CHSIDE SR = 0x01 << 2  //+ Channel side.
+	UDR    SR = 0x01 << 3  //+ Underrun flag.
+	CRCERR SR = 0x01 << 4  //+ CRC Error flag.
+	MODF   SR = 0x01 << 5  //+ Mode fault.
+	OVR    SR = 0x01 << 6  //+ Overrun flag.
+	BSY    SR = 0x01 << 7  //+ Busy flag.
+	FRE    SR = 0x01 << 8  //+ TI frame format error.
+	FRLVL  SR = 0x03 << 9  //+ FIFO Reception Level.
+	FTLVL  SR = 0x03 << 11 //+ FIFO Transmission Level.
 )
 
 const (
@@ -152,21 +141,15 @@ const (
 )
 
 const (
-	CHLEN    I2SCFGR = 0x01 << 0  //+ Channel length (number of bits per audio channel).
-	DATLEN   I2SCFGR = 0x03 << 1  //+ DATLEN[1:0] bits (Data length to be transferred).
-	DATLEN_0 I2SCFGR = 0x01 << 1  //  Bit 0.
-	DATLEN_1 I2SCFGR = 0x02 << 1  //  Bit 1.
-	CKPOL    I2SCFGR = 0x01 << 3  //+ steady state clock polarity.
-	I2SSTD   I2SCFGR = 0x03 << 4  //+ I2SSTD[1:0] bits (I2S standard selection).
-	I2SSTD_0 I2SCFGR = 0x01 << 4  //  Bit 0.
-	I2SSTD_1 I2SCFGR = 0x02 << 4  //  Bit 1.
-	PCMSYNC  I2SCFGR = 0x01 << 7  //+ PCM frame synchronization.
-	I2SCFG   I2SCFGR = 0x03 << 8  //+ I2SCFG[1:0] bits (I2S configuration mode).
-	I2SCFG_0 I2SCFGR = 0x01 << 8  //  Bit 0.
-	I2SCFG_1 I2SCFGR = 0x02 << 8  //  Bit 1.
-	I2SE     I2SCFGR = 0x01 << 10 //+ I2S Enable.
-	I2SMOD   I2SCFGR = 0x01 << 11 //+ I2S mode selection.
-	ASTRTEN  I2SCFGR = 0x01 << 12 //+ Asynchronous start enable.
+	CHLEN   I2SCFGR = 0x01 << 0  //+ Channel length (number of bits per audio channel).
+	DATLEN  I2SCFGR = 0x03 << 1  //+ DATLEN[1:0] bits (Data length to be transferred).
+	CKPOL   I2SCFGR = 0x01 << 3  //+ steady state clock polarity.
+	I2SSTD  I2SCFGR = 0x03 << 4  //+ I2SSTD[1:0] bits (I2S standard selection).
+	PCMSYNC I2SCFGR = 0x01 << 7  //+ PCM frame synchronization.
+	I2SCFG  I2SCFGR = 0x03 << 8  //+ I2SCFG[1:0] bits (I2S configuration mode).
+	I2SE    I2SCFGR = 0x01 << 10 //+ I2S Enable.
+	I2SMOD  I2SCFGR = 0x01 << 11 //+ I2S mode selection.
+	ASTRTEN I2SCFGR = 0x01 << 12 //+ Asynchronous start enable.
 )
 
 const (

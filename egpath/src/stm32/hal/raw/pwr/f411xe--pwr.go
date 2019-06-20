@@ -33,8 +33,6 @@ const (
 	MRLVDS   CR = 0x01 << 11 //+ Main Regulator Low Voltage in Deep Sleep mode.
 	ADCDC1   CR = 0x01 << 13 //+ Refer to AN4073 on how to use this bit.
 	VOS      CR = 0x03 << 14 //+ VOS[1:0] bits (Regulator voltage scaling output selection).
-	VOS_0    CR = 0x01 << 14 //  Bit 0.
-	VOS_1    CR = 0x02 << 14 //  Bit 1.
 	FMSSR    CR = 0x01 << 20 //+ Flash Memory Sleep System Run.
 	FISSR    CR = 0x01 << 21 //+ Flash Interface Stop while System Run.
 )

@@ -54,26 +54,13 @@ const (
 )
 
 const (
-	MULTI    CCR = 0x1F << 0  //+ MULTI[4:0] bits (Multi-ADC mode selection).
-	MULTI_0  CCR = 0x01 << 0  //  Bit 0.
-	MULTI_1  CCR = 0x02 << 0  //  Bit 1.
-	MULTI_2  CCR = 0x04 << 0  //  Bit 2.
-	MULTI_3  CCR = 0x08 << 0  //  Bit 3.
-	MULTI_4  CCR = 0x10 << 0  //  Bit 4.
-	DELAY    CCR = 0x0F << 8  //+ DELAY[3:0] bits (Delay between 2 sampling phases).
-	DELAY_0  CCR = 0x01 << 8  //  Bit 0.
-	DELAY_1  CCR = 0x02 << 8  //  Bit 1.
-	DELAY_2  CCR = 0x04 << 8  //  Bit 2.
-	DELAY_3  CCR = 0x08 << 8  //  Bit 3.
-	DDS      CCR = 0x01 << 13 //+ DMA disable selection (Multi-ADC mode).
-	DMA      CCR = 0x03 << 14 //+ DMA[1:0] bits (Direct Memory Access mode for multimode).
-	DMA_0    CCR = 0x01 << 14 //  Bit 0.
-	DMA_1    CCR = 0x02 << 14 //  Bit 1.
-	ADCPRE   CCR = 0x03 << 16 //+ ADCPRE[1:0] bits (ADC prescaler).
-	ADCPRE_0 CCR = 0x01 << 16 //  Bit 0.
-	ADCPRE_1 CCR = 0x02 << 16 //  Bit 1.
-	VBATE    CCR = 0x01 << 22 //+ VBAT Enable.
-	TSVREFE  CCR = 0x01 << 23 //+ Temperature Sensor and VREFINT Enable.
+	MULTI   CCR = 0x1F << 0  //+ MULTI[4:0] bits (Multi-ADC mode selection).
+	DELAY   CCR = 0x0F << 8  //+ DELAY[3:0] bits (Delay between 2 sampling phases).
+	DDS     CCR = 0x01 << 13 //+ DMA disable selection (Multi-ADC mode).
+	DMA     CCR = 0x03 << 14 //+ DMA[1:0] bits (Direct Memory Access mode for multimode).
+	ADCPRE  CCR = 0x03 << 16 //+ ADCPRE[1:0] bits (ADC prescaler).
+	VBATE   CCR = 0x01 << 22 //+ VBAT Enable.
+	TSVREFE CCR = 0x01 << 23 //+ Temperature Sensor and VREFINT Enable.
 )
 
 const (
