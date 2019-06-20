@@ -18,6 +18,7 @@ stm32xgen stm32/o/f030x6 <stm32f0xx/stm32f030x6.h
 stm32xgen stm32/o/f030x8 <stm32f0xx/stm32f030x8.h
 stm32xgen stm32/o/f303xe <stm32f3xx/stm32f303xe.h
 stm32xgen stm32/o/f411xe <stm32f4xx/stm32f411xe.h
+stm32xgen stm32/o/f469xx <stm32f4xx/stm32f469xx.h
 stm32xgen stm32/o/f746xx <stm32f7xx/stm32f746xx.h
 stm32xgen stm32/o/l476xx <stm32l4xx/stm32l476xx.h
 
