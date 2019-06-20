@@ -1,4 +1,4 @@
-// +build f40_41xxx f746xx
+// +build f40_41xxx f469xx f746xx
 
 package gpio
 
