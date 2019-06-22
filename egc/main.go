@@ -106,7 +106,7 @@ func main() {
 		logErr(err)
 		os.Exit(1)
 	}
-	defer os.RemoveAll(tmpDir)
+	//defer os.RemoveAll(tmpDir)
 
 	if err = egc(path); err != nil {
 		logErr(err)
