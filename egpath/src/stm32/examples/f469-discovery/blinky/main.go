@@ -4,38 +4,13 @@ import (
 	"delay"
 	"fmt"
 
-	"stm32/hal/dsi"
+	"stm32/hal/display/otm8009a"
 	"stm32/hal/gpio"
 	"stm32/hal/system"
 	"stm32/hal/system/timer/systick"
 )
 
 var green, orange, red, blue gpio.Pin
-var dsiHandle *dsi.DSI
-
-func initDisplay() {
-	cfg := dsi.Config{
-		NumLanes:       dsi.DSI_TWO_DATA_LANES,
-		TXEscapeClkDiv: 62500 / 15620,
-	}
-	pllCfg := dsi.PLLConfig{
-		LoopDivFactor:   125,
-		InputDivFactor:  dsi.DSI_PLL_IN_DIV2,
-		OutputDivFactor: dsi.DSI_PLL_OUT_DIV1,
-	}
-
-	// gotta reset the LCD first dummy
-	gpio.H.EnableClock(true)
-	xres := gpio.H.Pin(7)
-	xres.Setup(&gpio.Config{Mode: gpio.Out, Driver: gpio.OpenDrain, Speed: gpio.High})
-	xres.Clear()
-	delay.Millisec(20)
-	xres.Set()
-	delay.Millisec(10)
-
-	dsi.DSIPeriph.Init(cfg, pllCfg)
-
-}
 
 func init() {
 	system.Setup168(8)
@@ -56,7 +31,7 @@ func init() {
 	red.Setup(&cfg)
 	blue.Setup(&cfg)
 
-	initDisplay()
+	otm8009a.InitDisplay(otm8009a.LCD_ORIENTATION_LANDSCAPE)
 }
 
 func wait() {
