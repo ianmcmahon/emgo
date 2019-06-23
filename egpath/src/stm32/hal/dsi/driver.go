@@ -6,7 +6,7 @@ import (
 	"stm32/hal/raw/rcc"
 	"sync"
 
-	"github.com/ianmcmahon/emgo/egroot/src/delay"
+	"delay"
 )
 
 type halStatus uint8
@@ -224,6 +224,22 @@ func (d *DSI) Init(cfg Config, pllCfg PLLConfig) halStatus {
 	return HAL_OK
 }
 
+func (d *DSI) Start() halStatus {
+	d.mutex.Lock()
+	d.Instance.CR_EN().Set()
+	d.Instance.DSIEN().Set()
+	d.mutex.Unlock()
+	return HAL_OK
+}
+
+func (d *DSI) Stop() halStatus {
+	d.mutex.Lock()
+	d.Instance.CR_EN().Clear()
+	d.Instance.DSIEN().Clear()
+	d.mutex.Unlock()
+	return HAL_OK
+}
+
 func (d *DSI) DeInit() halStatus {
 	if d.Instance == nil {
 		return HAL_ERROR
@@ -362,6 +378,7 @@ func (d *DSI) ConfigVideoMode(vidCfg VideoConfig) halStatus {
 	d.Instance.LCOLCR_COLC().Store(vidCfg.ColorCoding)
 
 	// Select the color coding for the wrapper
+	// TODO: this doesn't appear to be storing properly
 	d.Instance.COLMUX().Store(dsi.WCFGR(vidCfg.ColorCoding))
 
 	// Enable/disable the loosely packed variant to 18-bit configuration
@@ -427,32 +444,35 @@ func (d *DSI) ConfigVideoMode(vidCfg VideoConfig) halStatus {
 }
 
 func (d *DSI) ConfigPhyTimer(cfg *PhyTimings) halStatus {
-	  /* Process locked */
-  d.mutex.Lock()
+	/* Process locked */
+	d.mutex.Lock()
 
-	maxTime := (cfg.ClockLaneLP2HSTime > cfg.ClockLaneHS2LPTime)? cfg.ClockLaneLP2HSTime: cfg.ClockLaneHS2LPTime;
+	maxTime := cfg.ClockLaneHS2LPTime
+	if cfg.ClockLaneLP2HSTime > cfg.ClockLaneHS2LPTime {
+		maxTime = cfg.ClockLaneLP2HSTime
+	}
 
-  /* Clock lane timer configuration */
+	/* Clock lane timer configuration */
 
-  /* In Automatic Clock Lane control mode, the DSI Host can turn off the clock lane between two
-     High-Speed transmission.
-     To do so, the DSI Host calculates the time required for the clock lane to change from HighSpeed
-     to Low-Power and from Low-Power to High-Speed.
-     This timings are configured by the HS2LP_TIME and LP2HS_TIME in the DSI Host Clock Lane Timer Configuration Register (DSI_CLTCR).
-     But the DSI Host is not calculating LP2HS_TIME + HS2LP_TIME but 2 x HS2LP_TIME.
+	/* In Automatic Clock Lane control mode, the DSI Host can turn off the clock lane between two
+	   High-Speed transmission.
+	   To do so, the DSI Host calculates the time required for the clock lane to change from HighSpeed
+	   to Low-Power and from Low-Power to High-Speed.
+	   This timings are configured by the HS2LP_TIME and LP2HS_TIME in the DSI Host Clock Lane Timer Configuration Register (DSI_CLTCR).
+	   But the DSI Host is not calculating LP2HS_TIME + HS2LP_TIME but 2 x HS2LP_TIME.
 
-     Workaround : Configure HS2LP_TIME and LP2HS_TIME with the same value being the max of HS2LP_TIME or LP2HS_TIME.
-  */
-  d.Instance.CLCTR_LP2HS_TIME().Store(dsi.LP2HS_TIME)
-	d.Instance.CLCTR_HS2LP_TIME().Store(dsi.HS2LP_TIME)
+	   Workaround : Configure HS2LP_TIME and LP2HS_TIME with the same value being the max of HS2LP_TIME or LP2HS_TIME.
+	*/
+	d.Instance.CLTCR_LP2HS_TIME().Store(dsi.CLTCR(maxTime))
+	d.Instance.CLTCR_HS2LP_TIME().Store(dsi.CLTCR(maxTime))
 
-  /* Data lane timer configuration */
-	d.Instance.DLTCR_MRD_TIME().Store(cfg.DataLaneMaxReadTime)
-	d.Instance.DLTCR_LP2HS_TIME().Store(cfg.DataLaneLP2HSTime)
-	d.Instance.DLTCR_HS2LP_TIME().Store(cfg.DataLaneHS2LPTime)
+	/* Data lane timer configuration */
+	d.Instance.MRD_TIME().Store(dsi.DLTCR(cfg.DataLaneMaxReadTime))
+	d.Instance.DLTCR_LP2HS_TIME().Store(dsi.DLTCR(cfg.DataLaneLP2HSTime))
+	d.Instance.DLTCR_HS2LP_TIME().Store(dsi.DLTCR(cfg.DataLaneHS2LPTime))
 
-  /* Configure the wait period to request HS transmission after a stop state */
-	d.Instance.SW_TIME().Store(cfg.StopWaitTime)
+	/* Configure the wait period to request HS transmission after a stop state */
+	d.Instance.SW_TIME().Store(dsi.PCONFR(cfg.StopWaitTime))
 
 	d.mutex.Unlock()
 

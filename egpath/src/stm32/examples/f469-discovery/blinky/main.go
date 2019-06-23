@@ -4,7 +4,7 @@ import (
 	"delay"
 	"fmt"
 
-	"stm32/hal/display/otm8009a"
+	"stm32/hal/display"
 	"stm32/hal/gpio"
 	"stm32/hal/system"
 	"stm32/hal/system/timer/systick"
@@ -31,7 +31,7 @@ func init() {
 	red.Setup(&cfg)
 	blue.Setup(&cfg)
 
-	otm8009a.InitDisplay(otm8009a.LCD_ORIENTATION_LANDSCAPE)
+	display.InitDisplay(display.LCD_ORIENTATION_LANDSCAPE)
 }
 
 func wait() {
