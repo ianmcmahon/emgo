@@ -13,7 +13,7 @@
 //  0x18  32  LPMCR   Host Low-Power Mode Configuration Register.
 //  0x2C  32  PCR     Host Protocol Configuration Register.
 //  0x30  32  GVCIDR  Host Generic VCID Register.
-//  0x34  32  M_CR    Host Mode Configuration Register.
+//  0x34  32  HMCR    Host Mode Configuration Register.
 //  0x38  32  VMCR    Host Video Mode Configuration Register.
 //  0x3C  32  VPCR    Host Video Packet Configuration Register.
 //  0x40  32  VCCR    Host Video Chunks Configuration Register.
@@ -195,6 +195,14 @@ const (
 
 const (
 	GVCIDR_VCIDn = 0
+)
+
+const (
+	CMDM HMCR = 0x01 << 0 //+ Command Mode.
+)
+
+const (
+	CMDMn = 0
 )
 
 const (
