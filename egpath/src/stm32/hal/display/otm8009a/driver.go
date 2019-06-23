@@ -15,10 +15,6 @@ const (
 	LCD_ORIENTATION_LANDSCAPE orientation = 0x00
 	LCD_ORIENTATION_PORTRAIT              = 0x01
 
-	//  pixel data format ie color coding transmitted on DSI Data lane in DSI packets
-	FORMAT_RGB888 uint32 = 0x00 // Pixel format chosen is RGB888 : 24 bpp
-	FORMAT_RBG565        = 0x02 // Pixel format chosen is RGB565 : 16 bpp
-
 	// Width and Height in Portrait mode
 	PORTRAIT_WIDTH  uint32 = 480 // LCD PIXEL WIDTH
 	PORTRAIT_HEIGHT        = 800 // LCD PIXEL HEIGHT
@@ -71,21 +67,21 @@ func InitDisplay(orient orientation) {
 
 	vidCfg := dsi.VideoConfig{
 		VirtualChannelID:             0,
-		ColorCoding:                  FORMAT_RGB888,
+		ColorCoding:                  dsi.DSI_RGB888,
 		Mode:                         dsi.DSI_VID_MODE_BURST,
-		PacketSize:                   HACT,
+		PacketSize:                   dsi.VPCR(HACT),
 		NumberOfChunks:               0,
 		NullPacketSize:               0xFFF,
 		HSPolarity:                   dsi.DSI_VSYNC_ACTIVE_HIGH,
 		VSPolarity:                   dsi.DSI_HSYNC_ACTIVE_HIGH,
 		DEPolarity:                   dsi.DSI_DATA_ENABLE_ACTIVE_HIGH,
-		HorizontalSyncActive:         (TIMING_HSYNC * laneClkSpeed) / LcdClock,
-		HorizontalBackPorch:          (TIMING_HBP * laneClkSpeed) / LcdClock,
-		HorizontalLine:               ((HACT + TIMING_HSYNC + TIMING_HBP + TIMING_HFP) * laneClkSpeed) / LcdClock,
+		HorizontalSyncActive:         dsi.VHSACR((TIMING_HSYNC * laneClkSpeed) / LcdClock),
+		HorizontalBackPorch:          dsi.VHBPCR(TIMING_HBP * laneClkSpeed / LcdClock),
+		HorizontalLine:               dsi.VLCR((HACT + TIMING_HSYNC + TIMING_HBP + TIMING_HFP) * laneClkSpeed / LcdClock),
 		VerticalSyncActive:           TIMING_VSYNC,
 		VerticalBackPorch:            TIMING_VBP,
 		VerticalFrontPorch:           TIMING_VFP,
-		VerticalActive:               VACT,
+		VerticalActive:               dsi.VVACR(VACT),
 		LPCommandEnable:              dsi.DSI_LP_COMMAND_ENABLE,
 		LPLargestPacketSize:          16,
 		LPVACTLargestPacketSize:      0,

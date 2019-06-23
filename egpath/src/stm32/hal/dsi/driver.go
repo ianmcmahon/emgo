@@ -58,9 +58,9 @@ const (
 	DSI_PHY_CLK_CONTROL    dsi.CLCR = dsi.DPCC
 	DSI_AUTO_CLOCK_CONTROL          = dsi.ACR
 
-	DSI_VID_MODE_NB_PULSES uint32 = 0
-	DSI_VID_MODE_NB_EVENTS        = 1
-	DSI_VID_MODE_BURST            = 2
+	DSI_VID_MODE_NB_PULSES dsi.VMCR = 0
+	DSI_VID_MODE_NB_EVENTS          = 1
+	DSI_VID_MODE_BURST              = 2
 
 	DSI_HSYNC_ACTIVE_HIGH       dsi.LPCR = dsi.LPCR(0)
 	DSI_HSYNC_ACTIVE_LOW                 = dsi.HSP
@@ -110,13 +110,13 @@ type Config struct {
 }
 
 type VideoConfig struct {
-	VirtualChannelID             uint32     // Virtual channel ID
+	VirtualChannelID             dsi.LVCIDR // Virtual channel ID
 	ColorCoding                  dsi.LCOLCR // Color coding for LTDC interface
 	LooselyPacked                dsi.LCOLCR // Enable or disable loosely packed stream (needed only when using 18-bit configuration).
-	Mode                         uint32     // Video mode type
-	PacketSize                   uint32     // Video packet size
-	NumberOfChunks               uint32     // Number of chunks
-	NullPacketSize               uint32     // Null packet size
+	Mode                         dsi.VMCR   // Video mode type
+	PacketSize                   dsi.VPCR   // Video packet size
+	NumberOfChunks               dsi.VCCR   // Number of chunks
+	NullPacketSize               dsi.VNPCR  // Null packet size
 	HSPolarity                   dsi.LPCR   // HSYNC pin polarity
 	VSPolarity                   dsi.LPCR   // VSYNC pin polarity
 	DEPolarity                   dsi.LPCR   // Data Enable pin polarity
@@ -137,6 +137,15 @@ type VideoConfig struct {
 	LPVerticalBackPorchEnable    dsi.VMCR   // Low-power vertical back-porch enable This parameter can be any value of @ref DSI_LP_VBP
 	LPVerticalSyncActiveEnable   dsi.VMCR   // Low-power vertical sync active enable This parameter can be any value of @ref DSI_LP_VSYNC
 	FrameBTAAcknowledgeEnable    dsi.VMCR   // Frame bus-turn-around acknowledge enable This parameter can be any value of @ref DSI_FBTA_acknowledge
+}
+
+type PhyTimings struct {
+	ClockLaneHS2LPTime  uint32 // The maximum time that the D-PHY clock lane takes to go from high-speed to low-power transmission
+	ClockLaneLP2HSTime  uint32 // The maximum time that the D-PHY clock lane takes to go from low-power to high-speed transmission
+	DataLaneHS2LPTime   uint32 // The maximum time that the D-PHY data lanes takes to go from high-speed to low-power transmission
+	DataLaneLP2HSTime   uint32 // The maximum time that the D-PHY data lanes takes to go from low-power to high-speed transmission
+	DataLaneMaxReadTime uint32 // The maximum time required to perform a read command
+	StopWaitTime        uint32 // The minimum wait period to request a High-Speed transmission after the Stop state
 }
 
 type PLLConfig struct {
@@ -415,4 +424,57 @@ func (d *DSI) ConfigVideoMode(vidCfg VideoConfig) halStatus {
 	d.mutex.Unlock()
 
 	return HAL_OK
+}
+
+func (d *DSI) ConfigPhyTimer(cfg *PhyTimings) halStatus {
+	  /* Process locked */
+  d.mutex.Lock()
+
+	maxTime := (cfg.ClockLaneLP2HSTime > cfg.ClockLaneHS2LPTime)? cfg.ClockLaneLP2HSTime: cfg.ClockLaneHS2LPTime;
+
+  /* Clock lane timer configuration */
+
+  /* In Automatic Clock Lane control mode, the DSI Host can turn off the clock lane between two
+     High-Speed transmission.
+     To do so, the DSI Host calculates the time required for the clock lane to change from HighSpeed
+     to Low-Power and from Low-Power to High-Speed.
+     This timings are configured by the HS2LP_TIME and LP2HS_TIME in the DSI Host Clock Lane Timer Configuration Register (DSI_CLTCR).
+     But the DSI Host is not calculating LP2HS_TIME + HS2LP_TIME but 2 x HS2LP_TIME.
+
+     Workaround : Configure HS2LP_TIME and LP2HS_TIME with the same value being the max of HS2LP_TIME or LP2HS_TIME.
+  */
+  d.Instance.CLCTR_LP2HS_TIME().Store(dsi.LP2HS_TIME)
+	d.Instance.CLCTR_HS2LP_TIME().Store(dsi.HS2LP_TIME)
+
+  /* Data lane timer configuration */
+	d.Instance.DLTCR_MRD_TIME().Store(cfg.DataLaneMaxReadTime)
+	d.Instance.DLTCR_LP2HS_TIME().Store(cfg.DataLaneLP2HSTime)
+	d.Instance.DLTCR_HS2LP_TIME().Store(cfg.DataLaneHS2LPTime)
+
+  /* Configure the wait period to request HS transmission after a stop state */
+	d.Instance.SW_TIME().Store(cfg.StopWaitTime)
+
+	d.mutex.Unlock()
+
+	return HAL_OK
+}
+
+func VPCR(v uint32) dsi.VPCR {
+	return dsi.VPCR(v)
+}
+
+func VLCR(v uint32) dsi.VLCR {
+	return dsi.VLCR(v)
+}
+
+func VHSACR(v uint32) dsi.VHSACR {
+	return dsi.VHSACR(v)
+}
+
+func VHBPCR(v uint32) dsi.VHBPCR {
+	return dsi.VHBPCR(v)
+}
+
+func VVACR(v uint32) dsi.VVACR {
+	return dsi.VVACR(v)
 }
