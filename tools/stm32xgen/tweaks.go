@@ -396,14 +396,20 @@ func sdio(p *Periph) {
 func dsi(p *Periph) {
 	// DSI uses the same bit name in multiple registers; need to prefix them so the consts don't conflict
 	bitMap := make(map[string][]*Register, 0)
+	regs := make([]*Register, 0, len(p.Regs))
 	for _, r := range p.Regs {
+		if r.Name == "MCR" {
+			r.Name = "HMCR"
+		}
 		for _, b := range r.Bits {
 			if _, ok := bitMap[b.Name]; !ok {
 				bitMap[b.Name] = make([]*Register, 0)
 			}
 			bitMap[b.Name] = append(bitMap[b.Name], r)
 		}
+		regs = append(regs, r)
 	}
+	p.Regs = regs
 
 	for name, regs := range bitMap {
 		if len(regs) > 1 {
