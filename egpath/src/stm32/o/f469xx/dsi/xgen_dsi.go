@@ -21,7 +21,7 @@ type DSI_Periph struct {
 	_       [4]uint32
 	PCR     RPCR
 	GVCIDR  RGVCIDR
-	M_CR    RM_CR
+	HMCR    RHMCR
 	VMCR    RVMCR
 	VPCR    RVPCR
 	VCCR    RVCCR
@@ -416,32 +416,36 @@ func (p *DSI_Periph) GVCIDR_VCID() RMGVCIDR {
 	return RMGVCIDR{mmio.UM32{&p.GVCIDR.U32, uint32(GVCIDR_VCID)}}
 }
 
-type M_CR uint32
+type HMCR uint32
 
-func (b M_CR) Field(mask M_CR) int {
+func (b HMCR) Field(mask HMCR) int {
 	return bits.Field32(uint32(b), uint32(mask))
 }
-func (mask M_CR) J(v int) M_CR {
-	return M_CR(bits.MakeField32(v, uint32(mask)))
+func (mask HMCR) J(v int) HMCR {
+	return HMCR(bits.MakeField32(v, uint32(mask)))
 }
 
-type RM_CR struct{ mmio.U32 }
+type RHMCR struct{ mmio.U32 }
 
-func (r *RM_CR) Bits(mask M_CR) M_CR    { return M_CR(r.U32.Bits(uint32(mask))) }
-func (r *RM_CR) StoreBits(mask, b M_CR) { r.U32.StoreBits(uint32(mask), uint32(b)) }
-func (r *RM_CR) SetBits(mask M_CR)      { r.U32.SetBits(uint32(mask)) }
-func (r *RM_CR) ClearBits(mask M_CR)    { r.U32.ClearBits(uint32(mask)) }
-func (r *RM_CR) Load() M_CR             { return M_CR(r.U32.Load()) }
-func (r *RM_CR) Store(b M_CR)           { r.U32.Store(uint32(b)) }
+func (r *RHMCR) Bits(mask HMCR) HMCR    { return HMCR(r.U32.Bits(uint32(mask))) }
+func (r *RHMCR) StoreBits(mask, b HMCR) { r.U32.StoreBits(uint32(mask), uint32(b)) }
+func (r *RHMCR) SetBits(mask HMCR)      { r.U32.SetBits(uint32(mask)) }
+func (r *RHMCR) ClearBits(mask HMCR)    { r.U32.ClearBits(uint32(mask)) }
+func (r *RHMCR) Load() HMCR             { return HMCR(r.U32.Load()) }
+func (r *RHMCR) Store(b HMCR)           { r.U32.Store(uint32(b)) }
 
-func (r *RM_CR) AtomicStoreBits(mask, b M_CR) { r.U32.AtomicStoreBits(uint32(mask), uint32(b)) }
-func (r *RM_CR) AtomicSetBits(mask M_CR)      { r.U32.AtomicSetBits(uint32(mask)) }
-func (r *RM_CR) AtomicClearBits(mask M_CR)    { r.U32.AtomicClearBits(uint32(mask)) }
+func (r *RHMCR) AtomicStoreBits(mask, b HMCR) { r.U32.AtomicStoreBits(uint32(mask), uint32(b)) }
+func (r *RHMCR) AtomicSetBits(mask HMCR)      { r.U32.AtomicSetBits(uint32(mask)) }
+func (r *RHMCR) AtomicClearBits(mask HMCR)    { r.U32.AtomicClearBits(uint32(mask)) }
 
-type RMM_CR struct{ mmio.UM32 }
+type RMHMCR struct{ mmio.UM32 }
 
-func (rm RMM_CR) Load() M_CR   { return M_CR(rm.UM32.Load()) }
-func (rm RMM_CR) Store(b M_CR) { rm.UM32.Store(uint32(b)) }
+func (rm RMHMCR) Load() HMCR   { return HMCR(rm.UM32.Load()) }
+func (rm RMHMCR) Store(b HMCR) { rm.UM32.Store(uint32(b)) }
+
+func (p *DSI_Periph) CMDM() RMHMCR {
+	return RMHMCR{mmio.UM32{&p.HMCR.U32, uint32(CMDM)}}
+}
 
 type VMCR uint32
 
