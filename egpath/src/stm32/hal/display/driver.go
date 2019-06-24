@@ -7,6 +7,8 @@ import (
 	"stm32/hal/gpio"
 	"stm32/hal/ltdc"
 	"stm32/hal/raw/rcc"
+
+	"github.com/ianmcmahon/emgo/egpath/src/stm32/hal/display/otm8009a"
 )
 
 type orientation uint32
@@ -42,6 +44,21 @@ const (
 	RCC_PLLSAIDIVR_16 = 0x0003
 )
 
+var (
+	lcd_x_size uint32 = LANDSCAPE_WIDTH
+	lcd_y_size uint32 = LANDSCAPE_HEIGHT
+)
+
+func Reset() {
+	gpio.H.EnableClock(true)
+	xres := gpio.H.Pin(7)
+	xres.Setup(&gpio.Config{Mode: gpio.Out, Driver: gpio.OpenDrain, Speed: gpio.High})
+	xres.Clear()
+	delay.Millisec(20)
+	xres.Set()
+	delay.Millisec(10)
+}
+
 func InitDisplay(orient orientation) {
 	var laneClkSpeed uint32 = 62500
 	cfg := dsi.Config{
@@ -54,19 +71,8 @@ func InitDisplay(orient orientation) {
 		OutputDivFactor: dsi.DSI_PLL_OUT_DIV1,
 	}
 
-	// gotta reset the LCD first dummy
-	gpio.H.EnableClock(true)
-	xres := gpio.H.Pin(7)
-	xres.Setup(&gpio.Config{Mode: gpio.Out, Driver: gpio.OpenDrain, Speed: gpio.High})
-	xres.Clear()
-	delay.Millisec(20)
-	xres.Set()
-	delay.Millisec(10)
-
 	dsi.DSIPeriph.Init(cfg, pllCfg)
 
-	var lcd_x_size uint32 = LANDSCAPE_WIDTH
-	var lcd_y_size uint32 = LANDSCAPE_HEIGHT
 	if orient == LCD_ORIENTATION_PORTRAIT {
 		lcd_x_size = PORTRAIT_WIDTH
 		lcd_y_size = PORTRAIT_HEIGHT
@@ -155,5 +161,46 @@ func InitDisplay(orient orientation) {
 	// BSP_LCD_SetFont(&LCD_DEFAULT_FONT)
 
 	// Initialize OTM8009A
-	//InitOTM8009A(OTM8009A_FORMAT_RGB888, uint8(orient))
+	otm8009a.Init(otm8009a.OTM8009A_FORMAT_RGB888, uint32(orient))
+}
+
+func GetXSize() uint32 {
+	return lcd_x_size
+}
+
+func GetYSize() uint32 {
+	return lcd_y_size
+}
+
+func SetXSize(x uint32) {
+	// todo: implementme
+}
+
+func SetYSize(x uint32) {
+	// todo: implementme
+}
+
+/**
+ * Initializes the LCD layers.
+ * LayerIndex: Layer foreground or background
+ * FB_Address: Layer frame buffer
+ */
+func LayerDefaultInit(LayerIndex uint16, FB_Address uint32) {
+	Layercfg := ltdc.LayerConfig{
+		WindowX0:        0,
+		WindowX1:        GetXSize(),
+		WindowY0:        0,
+		WindowY1:        GetYSize(),
+		PixelFormat:     ltdc.LTDC_PIXEL_FORMAT_ARGB8888,
+		FBStartAddress:  FB_Address,
+		Alpha:           0xFF,
+		Alpha0:          0,
+		Backcolor:       ltdc.Color{0, 0, 0, 0},
+		BlendingFactor1: ltdc.LTDC_BLENDING_FACTOR1_PAxCA,
+		BlendingFactor2: ltdc.LTDC_BLENDING_FACTOR2_PAxCA,
+		ImageWidth:      GetXSize(),
+		ImageHeight:     GetYSize(),
+	}
+
+	ltdc.LTDCPeriph.ConfigLayer(&Layercfg, LayerIndex)
 }

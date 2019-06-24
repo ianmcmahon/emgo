@@ -31,6 +31,7 @@ func init() {
 	red.Setup(&cfg)
 	blue.Setup(&cfg)
 
+	display.Reset()
 	display.InitDisplay(display.LCD_ORIENTATION_LANDSCAPE)
 }
 

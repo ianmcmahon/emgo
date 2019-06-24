@@ -73,6 +73,8 @@ type LTDC struct {
 	State     state
 	ErrorCode ltdcError
 	mutex     sync.Mutex
+	LayerCfg  [2]*LayerConfig
+	Layers    [2]*ltdc.LTDC_Layer_Periph
 }
 
 type Color struct {
@@ -80,6 +82,10 @@ type Color struct {
 	Green    uint8
 	Red      uint8
 	Reserved uint8
+}
+
+func (c Color) ToMem() uint32 {
+	return uint32(c.Reserved)<<24 | uint32(c.Red)<<16 | uint32(c.Green)<<8 | uint32(c.Blue)
 }
 
 type Config struct {
@@ -109,7 +115,7 @@ type LayerConfig struct {
 	Alpha0          uint32 // Configures the default alpha value.
 	BlendingFactor1 uint32 // Select the blending factor 1.
 	BlendingFactor2 uint32 // Select the blending factor 2.
-	FBStartAdress   uint32 // Configures the color frame buffer address
+	FBStartAddress  uint32 // Configures the color frame buffer address
 	ImageWidth      uint32 // Configures the color frame buffer line length.
 	ImageHeight     uint32 // Specifies the number of line in frame buffer.
 	Backcolor       Color  // Configures the layer background color.
@@ -211,4 +217,71 @@ func (p *LTDC) InitFromVideoConfig(cfg *Config, vidCfg *dsi.VideoConfig) halStat
 	cfg.TotalHeight = uint32(vidCfg.VerticalSyncActive) + uint32(vidCfg.VerticalBackPorch) + uint32(vidCfg.VerticalActive) + uint32(vidCfg.VerticalFrontPorch) - 1
 
 	return HAL_OK
+}
+
+func (p *LTDC) ConfigLayer(cfg *LayerConfig, layerIdx uint16) halStatus {
+	p.mutex.Lock()
+	p.State = HAL_LTDC_STATE_BUSY
+
+	p.LayerCfg[layerIdx] = cfg
+	p.SetConfig(cfg, layerIdx)
+	p.Instance.IMR().Set()
+
+	p.State = HAL_LTDC_STATE_READY
+	p.mutex.Unlock()
+	return HAL_OK
+}
+
+func (p *LTDC) SetConfig(cfg *LayerConfig, layerIdx uint16) {
+	layer := p.Layers[layerIdx]
+	hbp := uint32(p.Instance.AHBP().Load())
+	vbp := uint32(p.Instance.AVBP().Load())
+	/* Configures the horizontal start and stop position */
+	layer.WHPCR.StoreBits(0xFFF, ltdc.WHPCR(cfg.WindowX0+hbp+1))
+	layer.WHPCR.StoreBits(0xFFF<<16, ltdc.WHPCR((cfg.WindowX1+hbp+1)<<16))
+
+	/* Configures the vertical start and stop position */
+	layer.WVPCR.StoreBits(0xFFF, ltdc.WVPCR(cfg.WindowY0+vbp+1))
+	layer.WVPCR.StoreBits(0xFFF<<16, ltdc.WVPCR((cfg.WindowY1+vbp+1)<<16))
+
+	/* Specifies the pixel format */
+	layer.PFCR.StoreBits(0x7, ltdc.PFCR(cfg.PixelFormat))
+
+	/* Configures the default color values */
+	layer.DCCR.Store(ltdc.DCCR(cfg.Backcolor.ToMem()))
+
+	/* Specifies the constant alpha value */
+	layer.CACR.StoreBits(0xFF, ltdc.CACR(cfg.Alpha))
+
+	/* Specifies the blending factors */
+	layer.BFCR.StoreBits(0x0707, ltdc.BFCR(cfg.BlendingFactor1|cfg.BlendingFactor2))
+
+	/* Configures the color frame buffer start address */
+	layer.CFBAR.Store(ltdc.CFBAR(cfg.FBStartAddress))
+
+	bpp := uint32(1)
+	switch cfg.PixelFormat {
+	case LTDC_PIXEL_FORMAT_ARGB8888:
+		bpp = 4
+	case LTDC_PIXEL_FORMAT_RGB888:
+		bpp = 3
+	case LTDC_PIXEL_FORMAT_ARGB4444:
+		bpp = 2
+	case LTDC_PIXEL_FORMAT_RGB565:
+		bpp = 2
+	case LTDC_PIXEL_FORMAT_ARGB1555:
+		bpp = 2
+	case LTDC_PIXEL_FORMAT_AL88:
+		bpp = 2
+	}
+
+	/* Configures the color frame buffer pitch in byte */
+	layer.CFBLR.StoreBits(0x1FFF, ltdc.CFBLR((cfg.WindowX1-cfg.WindowX0)*bpp+3))
+	layer.CFBLR.StoreBits(0x1FFF<<16, ltdc.CFBLR(cfg.ImageWidth*bpp))
+
+	/* Configures the frame buffer line number */
+	layer.CFBLNR.StoreBits(0x7FF, ltdc.CFBLNR(cfg.ImageHeight))
+
+	/* Enable LTDC_Layer by setting LEN bit */
+	layer.CR.SetBits(1)
 }

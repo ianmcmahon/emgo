@@ -2,8 +2,76 @@
 package otm8009a
 
 const (
+	LCD_OTM8009A_ID        uint32 = 0
+	OTM8009A_CMD_NOP       uint8  = 0x00 // NOP command
+	OTM8009A_CMD_SWRESET          = 0x01 // Sw reset command
+	OTM8009A_CMD_RDDMADCTL        = 0x0B // Read Display MADCTR command : read memory display access ctrl
+	OTM8009A_CMD_RDDCOLMOD        = 0x0C // Read Display pixel format
+	OTM8009A_CMD_SLPIN            = 0x10 // Sleep In command
+	OTM8009A_CMD_SLPOUT           = 0x11 // Sleep Out command
+	OTM8009A_CMD_PTLON            = 0x12 // Partial mode On command
+	OTM8009A_CMD_DISPOFF          = 0x28 // Display Off command
+	OTM8009A_CMD_DISPON           = 0x29 // Display On command
+	OTM8009A_CMD_CASET            = 0x2A // Column address set command
+	OTM8009A_CMD_PASET            = 0x2B // Page address set command
+	OTM8009A_CMD_RAMWR            = 0x2C // Memory (GRAM) write command
+	OTM8009A_CMD_RAMRD            = 0x2E // Memory (GRAM) read command
+	OTM8009A_CMD_PLTAR            = 0x30 // Partial area command (4 parameters)
+	OTM8009A_CMD_TEOFF            = 0x34 // Tearing Effect Line Off command : command with no parameter
+	OTM8009A_CMD_TEEON            = 0x35 // Tearing Effect Line On command : command with 1 parameter 'TELOM'
+
+	// Parameter TELOM : Tearing Effect Line Output Mode : possible values
+	OTM8009A_TEEON_TELOM_VBLANKING_INFO_ONLY          = 0x00
+	OTM8009A_TEEON_TELOM_VBLANKING_AND_HBLANKING_INFO = 0x01
+
+	OTM8009A_CMD_MADCTR = 0x36 // Memory Access write control command
+
+	// Possible used values of MADCTR
+	OTM8009A_MADCTR_MODE_PORTRAIT  = 0x00
+	OTM8009A_MADCTR_MODE_LANDSCAPE = 0x60 // MY = 0, MX = 1, MV = 1, ML = 0, RGB = 0
+
+	OTM8009A_CMD_IDMOFF = 0x38 // Idle mode Off command
+	OTM8009A_CMD_IDMON  = 0x39 // Idle mode On command
+
+	OTM8009A_CMD_COLMOD = 0x3A // Interface Pixel format command
+
+	// Possible values of COLMOD parameter corresponding to used pixel formats
+	OTM8009A_COLMOD_RGB565 = 0x55
+	OTM8009A_COLMOD_RGB888 = 0x77
+
+	OTM8009A_CMD_RAMWRC = 0x3C // Memory write continue command
+	OTM8009A_CMD_RAMRDC = 0x3E // Memory read continue command
+
+	OTM8009A_CMD_WRTESCN = 0x44 // Write Tearing Effect Scan line command
+	OTM8009A_CMD_RDSCNL  = 0x45 // Read  Tearing Effect Scan line command
+
+	// CABC Management : ie : Content Adaptive Back light Control in IC OTM8009a
+	OTM8009A_CMD_WRDISBV  = 0x51 // Write Display Brightness command
+	OTM8009A_CMD_WRCTRLD  = 0x53 // Write CTRL Display command
+	OTM8009A_CMD_WRCABC   = 0x55 // Write Content Adaptive Brightness command
+	OTM8009A_CMD_WRCABCMB = 0x5E // Write CABC Minimum Brightness command
+
+	OTM8009A_ORIENTATION_PORTRAIT  uint32 = 0x00 // Portrait orientation choice of LCD screen
+	OTM8009A_ORIENTATION_LANDSCAPE        = 0x01 // Landscape orientation choice of LCD screen
+
+	OTM8009A_FORMAT_RGB888 uint32 = 0x00 // Pixel format chosen is RGB888 : 24 bpp
+	OTM8009A_FORMAT_RBG565        = 0x02 // Pixel format chosen is RGB565 : 16 bpp
+
+	// Width and Height in Portrait mode
+	OTM8009A_480X800_WIDTH  uint16 = 480 // LCD PIXEL WIDTH
+	OTM8009A_480X800_HEIGHT        = 800 // LCD PIXEL HEIGHT
+
+	// Width and Height in Landscape mode
+	OTM8009A_800X480_WIDTH  uint16 = 800 // LCD PIXEL WIDTH
+	OTM8009A_800X480_HEIGHT        = 480 // LCD PIXEL HEIGHT
+
+)
+
+//emgo:const
+var (
 	// Constant tables of register settings used to transmit DSI command packets as
 	// power up initialization sequence of the KoD LCD (OTM8009A LCD Driver)
+	// I believe the last byte of each array is the command, and actually needs to be sent first
 	lcdRegData1  = []byte{0x80, 0x09, 0x01, 0xFF}
 	lcdRegData2  = []byte{0x80, 0x09, 0xFF}
 	lcdRegData3  = []byte{0x00, 0x09, 0x0F, 0x0E, 0x07, 0x10, 0x0B, 0x0A, 0x04, 0x07, 0x0B, 0x08, 0x0F, 0x10, 0x0A, 0x01, 0xE1}

@@ -93,10 +93,21 @@ const (
 	DSI_RGB565 dsi.LCOLCR = 0x00
 	DSI_RGB666            = 0x03
 	DSI_RGB888            = 0x05
+
+	DSI_DCS_SHORT_PKT_WRITE_P0 dsi.GHCR = 0x00000005 // DCS short write, no parameters
+	DSI_DCS_SHORT_PKT_WRITE_P1          = 0x00000015 // DCS short write, one parameter
+	DSI_GEN_SHORT_PKT_WRITE_P0          = 0x00000003 // Generic short write, no parameters
+	DSI_GEN_SHORT_PKT_WRITE_P1          = 0x00000013 // Generic short write, one parameter
+	DSI_GEN_SHORT_PKT_WRITE_P2          = 0x00000023 // Generic short write, two parameters
+
+	DSI_DCS_LONG_PKT_WRITE dsi.GHCR = 0x00000039 // DCS long write
+	DSI_GEN_LONG_PKT_WRITE          = 0x00000029 // Generic long write
 )
 
 type DSI struct {
 	Instance  *dsi.DSI_Periph
+	Cfg       Config
+	VidCfg    VideoConfig
 	State     state
 	ErrorCode dsiError
 	ErrorMsk  uint32
@@ -161,6 +172,7 @@ func (d *DSI) Init(cfg Config, pllCfg PLLConfig) halStatus {
 		d.Instance = dsi.DSI
 		d.State = HAL_DSI_STATE_RESET
 	}
+	d.Cfg = cfg
 
 	if d.State == HAL_DSI_STATE_RESET {
 		// Initialize the low level hardware
@@ -497,4 +509,56 @@ func VHBPCR(v uint32) dsi.VHBPCR {
 
 func VVACR(v uint32) dsi.VVACR {
 	return dsi.VVACR(v)
+}
+
+func (p *DSI) ShortWrite(channelID uint32, mode dsi.GHCR, data0, data1 uint8) {
+	p.mutex.Lock()
+
+	// wait for command fifo empty
+	for p.Instance.CMDFE().Load() == 0 {
+		// todo: needs timeout BAD
+		delay.Millisec(1)
+	}
+
+	p.ConfigPacketHeader(dsi.GHCR(channelID), mode, data0, data1)
+
+	p.mutex.Unlock()
+}
+
+func (p *DSI) LongWrite(channelID uint32, mode dsi.GHCR, data []uint8) {
+	p.mutex.Lock()
+
+	// wait for command fifo empty
+	for p.Instance.CMDFE().Load() == 0 {
+		// todo: needs timeout BAD
+		delay.Millisec(1)
+	}
+
+	var acc uint32 = 0
+	cmd := data[len(data)-1] // cmd is the last byte in the array
+	acc |= uint32(cmd)       // cmd should be LSB of first packet
+	for i, b := range data {
+		if i == len(data)-1 { // last byte, cmd byte, needs skipping
+			break
+		}
+		acc |= uint32(b) << ((uint32(i) + 1) % 4) * 8
+
+		if (i+1)%4 == 3 {
+			p.Instance.GPDR.Store(dsi.GPDR(acc))
+			acc = 0
+		}
+	}
+
+	pktLen := len(data)
+
+	p.ConfigPacketHeader(dsi.GHCR(channelID), mode, uint8(pktLen&0xFF), uint8((pktLen&0xFF00)>>8))
+
+	p.mutex.Unlock()
+}
+
+func (p *DSI) ConfigPacketHeader(channelID dsi.GHCR, mode dsi.GHCR, data0, data1 uint8) {
+	p.Instance.WCMSB().Store(dsi.GHCR(data1))
+	p.Instance.WCLSB().Store(dsi.GHCR(data0))
+	p.Instance.GHCR_VCID().Store(channelID)
+	p.Instance.DT().Store(mode)
 }
