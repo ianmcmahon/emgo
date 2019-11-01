@@ -2,11 +2,12 @@
 package dsi
 
 import (
+	"delay"
+	"rtos"
 	"stm32/hal/raw/dsi"
 	"stm32/hal/raw/rcc"
+	"stm32/o/f469xx/irq"
 	"sync"
-
-	"delay"
 )
 
 type halStatus uint8
@@ -105,13 +106,15 @@ const (
 )
 
 type DSI struct {
-	Instance  *dsi.DSI_Periph
-	Cfg       Config
-	VidCfg    VideoConfig
-	State     state
-	ErrorCode dsiError
-	ErrorMsk  uint32
-	mutex     sync.Mutex
+	Instance              *dsi.DSI_Periph
+	Cfg                   Config
+	VidCfg                VideoConfig
+	State                 state
+	ErrorCode             dsiError
+	ErrorMsk              uint32
+	mutex                 sync.Mutex
+	TearingEffectCallback func()
+	EndOfRefreshCallback  func()
 }
 
 type Config struct {
@@ -306,17 +309,34 @@ func (d *DSI) MspInit() {
 	rcc.RCC.DSIRST().Set()
 	rcc.RCC.DSIRST().Clear()
 
-	// TODO: setup interrupts:
-	//   HAL_NVIC_SetPriority(LTDC_IRQn, 3, 0);
-	//   HAL_NVIC_EnableIRQ(LTDC_IRQn);
-	//
-	//   //* @brief NVIC configuration for DMA2D interrupt that is now enabled
-	//   HAL_NVIC_SetPriority(DMA2D_IRQn, 3, 0);
-	//   HAL_NVIC_EnableIRQ(DMA2D_IRQn);
-	//
-	//   //* @brief NVIC configuration for DSI interrupt that is now enabled
-	//   HAL_NVIC_SetPriority(DSI_IRQn, 3, 0);
-	//   HAL_NVIC_EnableIRQ(DSI_IRQn);
+	/*
+		1906 __STATIC_INLINE void NVIC_SetPriority(IRQn_Type IRQn, uint32_t priority) {
+		1908   if ((int32_t)(IRQn) < 0) {
+		1910     SCB->SHPR[(((uint32_t)(int32_t)IRQn) & 0xFUL)-4UL] = (uint8_t)((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL);
+		1911   } else {
+		1914     NVIC->IP[((uint32_t)(int32_t)IRQn)]                = (uint8_t)((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL);
+		1915   }
+		1916 }
+
+		1621 /
+		1622   \brief   Enable External Interrupt
+		1623   \details Enables a device-specific interrupt in the NVIC interrupt controller.
+		1624   \param [in]      IRQn  External interrupt number. Value cannot be negative.
+		1625  /
+		1626 __STATIC_INLINE void NVIC_EnableIRQ(IRQn_Type IRQn) {
+		1628   NVIC->ISER[(((uint32_t)(int32_t)IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)(int32_t)IRQn) & 0x1FUL));
+		1629 }
+	*/
+
+	rtos.IRQ(irq.LTDC).SetPrio(3)
+	rtos.IRQ(irq.LTDC).Enable()
+
+	rtos.IRQ(irq.DMA2D).SetPrio(3)
+	rtos.IRQ(irq.DMA2D).Enable()
+
+	rtos.IRQ(irq.DSI).SetPrio(3)
+	rtos.IRQ(irq.DSI).Enable()
+	rtos.IRQ(irq.DSI).UseHandler(d.IRQHandler)
 }
 
 func (d *DSI) MspDeInit() {
@@ -557,8 +577,27 @@ func (p *DSI) LongWrite(channelID uint32, mode dsi.GHCR, data []uint8) {
 }
 
 func (p *DSI) ConfigPacketHeader(channelID dsi.GHCR, mode dsi.GHCR, data0, data1 uint8) {
-	p.Instance.WCMSB().Store(dsi.GHCR(data1))
-	p.Instance.WCLSB().Store(dsi.GHCR(data0))
-	p.Instance.GHCR_VCID().Store(channelID)
-	p.Instance.DT().Store(mode)
+	header := mode<<dsi.DTn | channelID<<dsi.GHCR_VCIDn
+	header |= dsi.GHCR(data1)<<dsi.WCMSBn | dsi.GHCR(data0)<<dsi.WCLSBn
+	p.Instance.GHCR.Store(header)
+}
+
+func (p *DSI) IRQHandler() {
+	// Tearing Effect Interrupt management
+	if p.Instance.TEIF().Load() != 0 {
+		// Clear the Tearing Effect Interrupt Flag
+		p.Instance.TEIF().Clear()
+
+		// Tearing Effect Callback
+		p.TearingEffectCallback()
+	}
+
+	// End of Refresh Interrupt management
+	if p.Instance.ERIF().Load() != 0 {
+		// Clear the End of Refresh Interrupt Flag
+		p.Instance.ERIF().Clear()
+
+		// End of Refresh Callback
+		p.EndOfRefreshCallback()
+	}
 }
