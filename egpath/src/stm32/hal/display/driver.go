@@ -3,12 +3,11 @@ package display
 
 import (
 	"delay"
+	"stm32/hal/display/otm8009a"
 	"stm32/hal/dsi"
 	"stm32/hal/gpio"
 	"stm32/hal/ltdc"
 	"stm32/hal/raw/rcc"
-
-	"github.com/ianmcmahon/emgo/egpath/src/stm32/hal/display/otm8009a"
 )
 
 type orientation uint32

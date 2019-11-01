@@ -1,8 +1,9 @@
+// +build f46xxx
 package otm8009a
 
 import (
-	"github.com/ianmcmahon/emgo/egpath/src/stm32/hal/dsi"
-	"github.com/ianmcmahon/emgo/egroot/src/delay"
+	"delay"
+	"stm32/hal/dsi"
 )
 
 type LCD struct {
@@ -10,9 +11,9 @@ type LCD struct {
 
 func WriteCmd(cmd []byte) {
 	if len(cmd) > 2 {
-		dsi.DSIPeriph.ShortWrite(LCD_OTM8009A_ID, dsi.DSI_DCS_SHORT_PKT_WRITE_P1, cmd[0], cmd[1])
-	} else {
 		dsi.DSIPeriph.LongWrite(LCD_OTM8009A_ID, dsi.DSI_DCS_LONG_PKT_WRITE, cmd)
+	} else {
+		dsi.DSIPeriph.ShortWrite(LCD_OTM8009A_ID, dsi.DSI_DCS_SHORT_PKT_WRITE_P1, cmd[0], cmd[1])
 	}
 }
 

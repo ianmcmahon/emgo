@@ -1,4 +1,4 @@
-// +build f40_41xxx f429_439xx f746xx
+// +build f40_41xxx f429_439xx f469xx f746xx
 
 package exti
 

@@ -1,8 +1,11 @@
-// +build f469xxx
+// +build f469xx
 package ltdc
 
 import (
 	"sync"
+
+	"github.com/ianmcmahon/emgo/egpath/src/stm32/o/f469xx/irq"
+	"github.com/ianmcmahon/emgo/egroot/src/rtos"
 
 	"stm32/hal/dsi"
 	"stm32/hal/raw/ltdc"
@@ -69,12 +72,15 @@ const (
 )
 
 type LTDC struct {
-	Instance  *ltdc.LTDC_Periph
-	State     state
-	ErrorCode ltdcError
-	mutex     sync.Mutex
-	LayerCfg  [2]*LayerConfig
-	Layers    [2]*ltdc.LTDC_Layer_Periph
+	Instance            *ltdc.LTDC_Periph
+	State               state
+	ErrorCode           ltdcError
+	mutex               sync.Mutex
+	LayerCfg            [2]*LayerConfig
+	Layers              [2]*ltdc.LTDC_Layer_Periph
+	ErrorCallback       func()
+	LineEventCallback   func()
+	ReloadEventCallback func()
 }
 
 type Color struct {
@@ -180,6 +186,11 @@ func (p *LTDC) Init(cfg Config) halStatus {
 }
 
 func (p *LTDC) MspInit() halStatus {
+	// enable interrupts
+	rtos.IRQ(irq.LTDC).SetPrio(3)
+	rtos.IRQ(irq.LTDC).Enable()
+	rtos.IRQ(irq.LTDC).UseHandler(p.IRQHandler)
+
 	return HAL_OK
 }
 
@@ -284,4 +295,63 @@ func (p *LTDC) SetConfig(cfg *LayerConfig, layerIdx uint16) {
 
 	/* Enable LTDC_Layer by setting LEN bit */
 	layer.CR.SetBits(1)
+}
+
+func (p *LTDC) IRQHandler() {
+	// Transfer Error Interrupt management
+	if p.Instance.TERRIF().Load() != 0 {
+		// Disable the transfer Error interrupt
+		p.Instance.TERRIE().Clear()
+		// Clear the transfer error flag
+		p.Instance.TERRIF().Clear()
+		// Update error code
+		p.ErrorCode |= HAL_LTDC_ERROR_TE
+		// Change LTDC state
+		p.State = HAL_LTDC_STATE_ERROR
+		// Process unlocked
+		p.mutex.Unlock()
+		// Transfer error Callback
+		p.ErrorCallback()
+	}
+	// FIFO underrun Interrupt management
+	if p.Instance.FUIF().Load() != 0 {
+		// Disable the FIFO underrun interrupt
+		p.Instance.FUIE().Clear()
+		// Clear the FIFO underrun flag
+		p.Instance.FUIF().Clear()
+		// Update error code
+		p.ErrorCode |= HAL_LTDC_ERROR_FU
+		// Change LTDC state
+		p.State = HAL_LTDC_STATE_ERROR
+		// Process unlocked
+		p.mutex.Unlock()
+		// Transfer error Callback
+		p.ErrorCallback()
+	}
+	// Line Interrupt management
+	if p.Instance.LIF().Load() != 0 {
+		// Disable the Line interrupt
+		p.Instance.LIE().Clear()
+		// Clear the Line interrupt flag
+		p.Instance.LIF().Clear()
+		// Change LTDC state
+		p.State = HAL_LTDC_STATE_READY
+		// Process unlocked
+		p.mutex.Unlock()
+		// Line interrupt Callback
+		p.LineEventCallback()
+	}
+	// Register reload Interrupt management
+	if p.Instance.RRIF().Load() != 0 {
+		// Disable the register reload interrupt
+		p.Instance.RRIE().Clear()
+		// Clear the register reload flag
+		p.Instance.RRIF().Clear()
+		// Change LTDC state
+		p.State = HAL_LTDC_STATE_READY
+		// Process unlocked
+		p.mutex.Unlock()
+		// Register reload interrupt Callback
+		p.ReloadEventCallback()
+	}
 }
