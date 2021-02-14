@@ -10,7 +10,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/ziutek/emgo/egc/importer"
+	"github.com/ianmcmahon/emgo/egc/importer"
 )
 
 type Importer struct {

@@ -87,8 +87,9 @@ type BuildTools struct {
 
 func NewBuildTools(ctx *build.Context) (*BuildTools, error) {
 	cflags := CFLAGS{
-		Dbg:  "-g",
-		Opt:  "-O" + optLevel + " -fplan9-extensions -fno-delete-null-pointer-checks -fno-common -freg-struct-return -ffunction-sections -fdata-sections",
+		Dbg: "-g",
+		//Opt:  "-O" + optLevel + " -fplan9-extensions -fno-delete-null-pointer-checks -fno-common -freg-struct-return -ffunction-sections -fdata-sections",
+		Opt:  " -fplan9-extensions -fno-delete-null-pointer-checks -fno-common -freg-struct-return -ffunction-sections -fdata-sections",
 		Warn: "-Wall -Wno-parentheses -Wno-unused-function -Wno-unused-variable -Wno-unused-label -Wno-maybe-uninitialized -Wno-unused-local-typedefs -Wno-discarded-qualifiers",
 		Incl: "-I" + filepath.Join(ctx.GOROOT, "egc"),
 	}

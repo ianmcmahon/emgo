@@ -16,8 +16,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ziutek/emgo/egc/importer"
-	"github.com/ziutek/emgo/gotoc"
+	"github.com/ianmcmahon/emgo/egc/importer"
+	"github.com/ianmcmahon/emgo/gotoc"
 )
 
 func egc(ppath string) error {
@@ -262,6 +262,7 @@ func compile(bp *build.Package) error {
 		// TODO: avoid recompile up to date objects
 		o := filepath.Join(work, c[:len(c)-1]+"o")
 		c = filepath.Join(bp.Dir, c)
+		fmt.Printf("o: %s  c: %s\n", o, c)
 		if err = bt.Compile(o, c); err != nil {
 			return err
 		}

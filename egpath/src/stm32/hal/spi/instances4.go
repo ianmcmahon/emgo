@@ -1,4 +1,4 @@
-// +build f40_41xxx f411xe f303xe
+// +build f40_41xxx f411xe f469xx f303xe
 
 package spi
 
